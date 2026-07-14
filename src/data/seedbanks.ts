@@ -14,7 +14,7 @@ export const seedBanks: SeedBank[] = [
     description:
       "One of the world's largest cannabis seed banks, stocking thousands of strains from over 100 breeders with fast, discreet worldwide shipping.",
     logo: "/logos/seedsman.svg",
-    url: "https://www.seedsman.com",
+    url: "https://www.seedsman.com?a_aid=5fdedb1e2c2ff",
     accent: "text-neutral-900",
   },
   {
@@ -30,7 +30,7 @@ export const seedBanks: SeedBank[] = [
     description:
       "Canadian breeder known for high-germination feminized seeds and a strong loyalty rewards program for growers.",
     logo: "/logos/crop-king-seeds.webp",
-    url: "https://www.cropkingseeds.com",
+    url: "https://www.cropkingseeds.com/#a_aid=royaltyseeds",
     accent: "text-amber-600",
   },
   {
@@ -142,7 +142,7 @@ export const seedBanks: SeedBank[] = [
     description:
       "One of the largest online seed stores, stocking 2,500+ strains from 120+ breeders with free seeds on every order and fast worldwide delivery.",
     logo: "/logos/herbies.svg",
-    url: "https://herbiesheadshop.com",
+    url: "https://herbiesheadshop.com/?utm_source=growing-weed&utm_medium=people&utm_campaign=growing-weed_partner&a_aid=growing-weed",
     accent: "text-emerald-600",
   },
 ];

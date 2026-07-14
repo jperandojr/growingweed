@@ -14,6 +14,10 @@ const TOP_OFFERS = 3;
 // Partner banks always lead the recommendations, in this order.
 const PINNED_BANKS = ["herbies", "crop-king-seeds"];
 
+// Temporary: only show these seed banks on the product page; the rest are
+// hidden for now (still shown elsewhere, e.g. /seed-banks).
+const VISIBLE_BANKS = new Set(["herbies", "seedsman", "crop-king-seeds"]);
+
 export function StrainBuyBox({ strain }: { strain: Strain }) {
   const { toggleWishlist, isInWishlist, toggleCompare, isInCompare } = useStore();
   const [refBank, setRefBank] = useState<string | null>(null);
@@ -45,13 +49,17 @@ export function StrainBuyBox({ strain }: { strain: Strain }) {
     const bankTypes = byBank.get(o.seedBankId)!;
     if (!bankTypes.includes(o.type)) bankTypes.push(o.type);
   }
-  const bankRows = [...byBank.entries()].sort(([a], [b]) => {
+  const allBankRows = [...byBank.entries()].sort(([a], [b]) => {
     const t = tier(a) - tier(b);
     if (t !== 0) return t;
     const ra = seedBanks.find((s) => s.id === a)?.rating ?? 0;
     const rb = seedBanks.find((s) => s.id === b)?.rating ?? 0;
     return rb - ra;
   });
+  // Only the three visible banks, unless none of them carry this strain —
+  // then fall back to whoever does, so the page never has an empty buy box.
+  const visibleOnly = allBankRows.filter(([bankId]) => VISIBLE_BANKS.has(bankId));
+  const bankRows = visibleOnly.length > 0 ? visibleOnly : allBankRows;
 
   const visibleRows = showAll ? bankRows : bankRows.slice(0, TOP_OFFERS);
   const hiddenCount = bankRows.length - TOP_OFFERS;
