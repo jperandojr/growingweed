@@ -9,7 +9,8 @@
     "keyword": "what is cannabis cannabis",
     "permalink": "what-is-cannabis",
     "status": "published",
-    "slug": "what-is-cannabis"
+    "slug": "what-is-cannabis",
+    "batchId": "a3aea526"
   },
   {
     "id": "2ef07875",
@@ -21,7 +22,8 @@
     "keyword": "history of cannabis cannabis",
     "permalink": "history-of-cannabis",
     "status": "published",
-    "slug": "history-of-cannabis"
+    "slug": "history-of-cannabis",
+    "batchId": "a3aea526"
   },
   {
     "id": "b0fdc102",
@@ -32,7 +34,9 @@
     "wordCount": 1800,
     "keyword": "cannabis around the world cannabis",
     "permalink": "cannabis-around-the-world",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-07-15"
   },
   {
     "id": "723432e3",
@@ -43,7 +47,9 @@
     "wordCount": 1800,
     "keyword": "hemp vs marijuana cannabis",
     "permalink": "hemp-vs-marijuana",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-07-17"
   },
   {
     "id": "b50e4e44",
@@ -54,7 +60,9 @@
     "wordCount": 1800,
     "keyword": "medical cannabis explained cannabis",
     "permalink": "medical-cannabis-explained",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-07-20"
   },
   {
     "id": "aae86ae4",
@@ -65,7 +73,9 @@
     "wordCount": 1800,
     "keyword": "recreational cannabis explained cannabis",
     "permalink": "recreational-cannabis-explained",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-07-22"
   },
   {
     "id": "b8bdb080",
@@ -76,7 +86,9 @@
     "wordCount": 1800,
     "keyword": "cannabis laws around the world cannabis",
     "permalink": "cannabis-laws-around-the-world",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-07-24"
   },
   {
     "id": "a3206f9a",
@@ -87,7 +99,9 @@
     "wordCount": 1800,
     "keyword": "cannabis terminology cannabis",
     "permalink": "cannabis-terminology",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-07-27"
   },
   {
     "id": "f88cd5d9",
@@ -98,7 +112,9 @@
     "wordCount": 1800,
     "keyword": "cannabis plant anatomy overview cannabis",
     "permalink": "cannabis-plant-anatomy-overview",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-07-29"
   },
   {
     "id": "d2a1f3fa",
@@ -109,7 +125,9 @@
     "wordCount": 1800,
     "keyword": "understanding cannabinoids cannabis",
     "permalink": "understanding-cannabinoids",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-07-31"
   },
   {
     "id": "5799ad82",
@@ -120,7 +138,9 @@
     "wordCount": 1800,
     "keyword": "understanding terpenes cannabis",
     "permalink": "understanding-terpenes",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-08-03"
   },
   {
     "id": "0da161db",
@@ -131,7 +151,9 @@
     "wordCount": 1800,
     "keyword": "thc explained cannabis",
     "permalink": "thc-explained",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-08-05"
   },
   {
     "id": "48a7149e",
@@ -142,7 +164,9 @@
     "wordCount": 1800,
     "keyword": "cbd explained cannabis",
     "permalink": "cbd-explained",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-08-07"
   },
   {
     "id": "39aa4760",
@@ -153,7 +177,9 @@
     "wordCount": 1800,
     "keyword": "cbg explained cannabis",
     "permalink": "cbg-explained",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-08-10"
   },
   {
     "id": "91406195",
@@ -164,7 +190,9 @@
     "wordCount": 1800,
     "keyword": "cbc explained cannabis",
     "permalink": "cbc-explained",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-08-12"
   },
   {
     "id": "7dd15bb2",
@@ -175,7 +203,9 @@
     "wordCount": 1800,
     "keyword": "endocannabinoid system cannabis",
     "permalink": "endocannabinoid-system",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-08-14"
   },
   {
     "id": "1151dcd7",
@@ -186,7 +216,9 @@
     "wordCount": 1800,
     "keyword": "how cannabis affects the human body cannabis",
     "permalink": "how-cannabis-affects-the-human-body",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-08-17"
   },
   {
     "id": "c4d004fb",
@@ -197,7 +229,9 @@
     "wordCount": 1800,
     "keyword": "cannabis myths vs facts cannabis",
     "permalink": "cannabis-myths-vs-facts",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-08-19"
   },
   {
     "id": "2835df4c",
@@ -208,7 +242,9 @@
     "wordCount": 1800,
     "keyword": "types of cannabis products cannabis",
     "permalink": "types-of-cannabis-products",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-08-21"
   },
   {
     "id": "b8bc172a",
@@ -219,7 +255,9 @@
     "wordCount": 1200,
     "keyword": "beginner faq cannabis",
     "permalink": "beginner-faq",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-08-24"
   },
   {
     "id": "328b38ef",
@@ -230,7 +268,9 @@
     "wordCount": 1800,
     "keyword": "cannabis plant life cycle cannabis",
     "permalink": "cannabis-plant-life-cycle",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-08-26"
   },
   {
     "id": "f66c0db8",
@@ -241,7 +281,9 @@
     "wordCount": 1800,
     "keyword": "seed anatomy cannabis",
     "permalink": "seed-anatomy",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-08-28"
   },
   {
     "id": "7dfba9ad",
@@ -252,7 +294,9 @@
     "wordCount": 1800,
     "keyword": "root development cannabis",
     "permalink": "root-development",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-08-31"
   },
   {
     "id": "d41846d4",
@@ -263,7 +307,9 @@
     "wordCount": 1800,
     "keyword": "stem development cannabis",
     "permalink": "stem-development",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-09-02"
   },
   {
     "id": "6d1e92be",
@@ -274,7 +320,9 @@
     "wordCount": 1800,
     "keyword": "leaf structure cannabis",
     "permalink": "leaf-structure",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-09-04"
   },
   {
     "id": "4da41dc3",
@@ -285,7 +333,9 @@
     "wordCount": 1800,
     "keyword": "photosynthesis cannabis",
     "permalink": "photosynthesis",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-09-07"
   },
   {
     "id": "b687c635",
@@ -296,7 +346,9 @@
     "wordCount": 1800,
     "keyword": "plant hormones cannabis",
     "permalink": "plant-hormones",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-09-09"
   },
   {
     "id": "a85c4610",
@@ -307,7 +359,9 @@
     "wordCount": 1800,
     "keyword": "male plants cannabis",
     "permalink": "male-plants",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-09-11"
   },
   {
     "id": "a81a9f01",
@@ -318,7 +372,9 @@
     "wordCount": 1800,
     "keyword": "female plants cannabis",
     "permalink": "female-plants",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-09-14"
   },
   {
     "id": "c0cd6622",
@@ -329,7 +385,9 @@
     "wordCount": 1800,
     "keyword": "hermaphrodite plants cannabis",
     "permalink": "hermaphrodite-plants",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-09-16"
   },
   {
     "id": "51ea1668",
@@ -340,7 +398,9 @@
     "wordCount": 1800,
     "keyword": "trichomes cannabis",
     "permalink": "trichomes",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-09-18"
   },
   {
     "id": "c19148ba",
@@ -351,7 +411,9 @@
     "wordCount": 1800,
     "keyword": "pistils cannabis",
     "permalink": "pistils",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-09-21"
   },
   {
     "id": "6a6877f6",
@@ -362,7 +424,9 @@
     "wordCount": 1800,
     "keyword": "calyxes cannabis",
     "permalink": "calyxes",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-09-23"
   },
   {
     "id": "389f6031",
@@ -373,7 +437,9 @@
     "wordCount": 1800,
     "keyword": "resin production cannabis",
     "permalink": "resin-production",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-09-25"
   },
   {
     "id": "fbf8da35",
@@ -384,7 +450,9 @@
     "wordCount": 1800,
     "keyword": "pollination cannabis",
     "permalink": "pollination",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-09-28"
   },
   {
     "id": "7fa5b17b",
@@ -395,7 +463,9 @@
     "wordCount": 1800,
     "keyword": "seed formation cannabis",
     "permalink": "seed-formation",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-09-30"
   },
   {
     "id": "c808ef39",
@@ -406,7 +476,9 @@
     "wordCount": 1800,
     "keyword": "plant aging cannabis",
     "permalink": "plant-aging",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-10-02"
   },
   {
     "id": "4b2047b0",
@@ -417,7 +489,9 @@
     "wordCount": 1800,
     "keyword": "cannabis reproduction cannabis",
     "permalink": "cannabis-reproduction",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-10-05"
   },
   {
     "id": "5812b066",
@@ -428,7 +502,9 @@
     "wordCount": 1800,
     "keyword": "biology glossary cannabis",
     "permalink": "biology-glossary",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-10-07"
   },
   {
     "id": "f5b4c509",
@@ -439,7 +515,9 @@
     "wordCount": 1200,
     "keyword": "biology faq cannabis",
     "permalink": "biology-faq",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-10-09"
   },
   {
     "id": "0f659f7a",
@@ -450,7 +528,9 @@
     "wordCount": 1800,
     "keyword": "introduction to cannabis genetics cannabis",
     "permalink": "introduction-to-cannabis-genetics",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-10-12"
   },
   {
     "id": "77ee9e49",
@@ -461,7 +541,9 @@
     "wordCount": 1800,
     "keyword": "indica cannabis",
     "permalink": "indica",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-10-14"
   },
   {
     "id": "ecfee1c4",
@@ -472,7 +554,9 @@
     "wordCount": 1800,
     "keyword": "sativa cannabis",
     "permalink": "sativa",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-10-16"
   },
   {
     "id": "da463dd2",
@@ -483,7 +567,9 @@
     "wordCount": 1800,
     "keyword": "hybrid cannabis",
     "permalink": "hybrid",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-10-19"
   },
   {
     "id": "a72caea1",
@@ -494,7 +580,9 @@
     "wordCount": 1800,
     "keyword": "landrace strains cannabis",
     "permalink": "landrace-strains",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-10-21"
   },
   {
     "id": "dd7e5560",
@@ -505,7 +593,9 @@
     "wordCount": 1800,
     "keyword": "phenotypes cannabis",
     "permalink": "phenotypes",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-10-23"
   },
   {
     "id": "889559be",
@@ -516,7 +606,9 @@
     "wordCount": 1800,
     "keyword": "genotypes cannabis",
     "permalink": "genotypes",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-10-26"
   },
   {
     "id": "89469ce2",
@@ -527,7 +619,9 @@
     "wordCount": 1800,
     "keyword": "reading seed descriptions cannabis",
     "permalink": "reading-seed-descriptions",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-10-28"
   },
   {
     "id": "35c56315",
@@ -538,7 +632,9 @@
     "wordCount": 1800,
     "keyword": "choosing the right strain cannabis",
     "permalink": "choosing-the-right-strain",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-10-30"
   },
   {
     "id": "b1b4436d",
@@ -549,7 +645,9 @@
     "wordCount": 1800,
     "keyword": "thc vs cbd strains cannabis",
     "permalink": "thc-vs-cbd-strains",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-11-02"
   },
   {
     "id": "34a30386",
@@ -560,7 +658,9 @@
     "wordCount": 1800,
     "keyword": "high terpene strains cannabis",
     "permalink": "high-terpene-strains",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-11-04"
   },
   {
     "id": "c503538b",
@@ -571,7 +671,9 @@
     "wordCount": 1800,
     "keyword": "autoflower genetics cannabis",
     "permalink": "autoflower-genetics",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-11-06"
   },
   {
     "id": "13acc86c",
@@ -582,7 +684,9 @@
     "wordCount": 1800,
     "keyword": "photoperiod genetics cannabis",
     "permalink": "photoperiod-genetics",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-11-09"
   },
   {
     "id": "8fe48ef8",
@@ -593,7 +697,9 @@
     "wordCount": 1800,
     "keyword": "f1 hybrids cannabis",
     "permalink": "f1-hybrids",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-11-11"
   },
   {
     "id": "b280e637",
@@ -604,7 +710,9 @@
     "wordCount": 1800,
     "keyword": "popular beginner strains cannabis",
     "permalink": "popular-beginner-strains",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-11-13"
   },
   {
     "id": "4ffad27c",
@@ -615,7 +723,9 @@
     "wordCount": 1800,
     "keyword": "medical strains cannabis",
     "permalink": "medical-strains",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-11-16"
   },
   {
     "id": "81be7641",
@@ -626,7 +736,9 @@
     "wordCount": 1800,
     "keyword": "high yield strains cannabis",
     "permalink": "high-yield-strains",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-11-18"
   },
   {
     "id": "fa8b9ac7",
@@ -637,7 +749,9 @@
     "wordCount": 1800,
     "keyword": "fast flowering strains cannabis",
     "permalink": "fast-flowering-strains",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-11-20"
   },
   {
     "id": "1df84777",
@@ -648,7 +762,9 @@
     "wordCount": 1800,
     "keyword": "rare genetics cannabis",
     "permalink": "rare-genetics",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-11-23"
   },
   {
     "id": "0140368f",
@@ -659,7 +775,9 @@
     "wordCount": 1200,
     "keyword": "genetics faq cannabis",
     "permalink": "genetics-faq",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-11-25"
   },
   {
     "id": "2f9c7038",
@@ -670,7 +788,9 @@
     "wordCount": 1800,
     "keyword": "types of seeds cannabis",
     "permalink": "types-of-seeds",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-11-27"
   },
   {
     "id": "d6d16e26",
@@ -681,7 +801,9 @@
     "wordCount": 1800,
     "keyword": "regular seeds cannabis",
     "permalink": "regular-seeds",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-11-30"
   },
   {
     "id": "564010c1",
@@ -692,7 +814,9 @@
     "wordCount": 1800,
     "keyword": "feminized seeds cannabis",
     "permalink": "feminized-seeds",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-12-02"
   },
   {
     "id": "556899ec",
@@ -703,7 +827,9 @@
     "wordCount": 1800,
     "keyword": "autoflower seeds cannabis",
     "permalink": "autoflower-seeds",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-12-04"
   },
   {
     "id": "dfb8e261",
@@ -714,7 +840,9 @@
     "wordCount": 1800,
     "keyword": "buying seeds cannabis",
     "permalink": "buying-seeds",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-12-07"
   },
   {
     "id": "558f909e",
@@ -725,7 +853,9 @@
     "wordCount": 1800,
     "keyword": "choosing a seed bank cannabis",
     "permalink": "choosing-a-seed-bank",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-12-09"
   },
   {
     "id": "6d6d0f0a",
@@ -736,7 +866,9 @@
     "wordCount": 1800,
     "keyword": "storing seeds cannabis",
     "permalink": "storing-seeds",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-12-11"
   },
   {
     "id": "973a3e7d",
@@ -747,7 +879,9 @@
     "wordCount": 1800,
     "keyword": "seed viability cannabis",
     "permalink": "seed-viability",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-12-14"
   },
   {
     "id": "17529ce7",
@@ -758,7 +892,9 @@
     "wordCount": 1800,
     "keyword": "seed quality cannabis",
     "permalink": "seed-quality",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-12-16"
   },
   {
     "id": "53c88cbf",
@@ -769,7 +905,9 @@
     "wordCount": 1200,
     "keyword": "seed faq cannabis",
     "permalink": "seed-faq",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-12-18"
   },
   {
     "id": "6281a127",
@@ -780,7 +918,9 @@
     "wordCount": 1800,
     "keyword": "indoor vs outdoor cannabis",
     "permalink": "indoor-vs-outdoor",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-12-21"
   },
   {
     "id": "e5898830",
@@ -791,7 +931,9 @@
     "wordCount": 1800,
     "keyword": "choosing a growing method cannabis",
     "permalink": "choosing-a-growing-method",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-12-23"
   },
   {
     "id": "298abed6",
@@ -802,7 +944,9 @@
     "wordCount": 1800,
     "keyword": "planning your space cannabis",
     "permalink": "planning-your-space",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-12-25"
   },
   {
     "id": "e617da0b",
@@ -813,7 +957,9 @@
     "wordCount": 1800,
     "keyword": "budget planning cannabis",
     "permalink": "budget-planning",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-12-28"
   },
   {
     "id": "f3d84d3d",
@@ -824,7 +970,9 @@
     "wordCount": 1800,
     "keyword": "grow timeline cannabis",
     "permalink": "grow-timeline",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2026-12-30"
   },
   {
     "id": "43c59f9b",
@@ -835,7 +983,9 @@
     "wordCount": 1800,
     "keyword": "climate considerations cannabis",
     "permalink": "climate-considerations",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-01-01"
   },
   {
     "id": "136ab6e8",
@@ -846,7 +996,9 @@
     "wordCount": 1800,
     "keyword": "electricity basics cannabis",
     "permalink": "electricity-basics",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-01-04"
   },
   {
     "id": "c681df19",
@@ -857,7 +1009,9 @@
     "wordCount": 1800,
     "keyword": "safety cannabis",
     "permalink": "safety",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-01-06"
   },
   {
     "id": "40764039",
@@ -868,7 +1022,9 @@
     "wordCount": 1800,
     "keyword": "grow checklist cannabis",
     "permalink": "grow-checklist",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-01-08"
   },
   {
     "id": "e4d83363",
@@ -879,7 +1035,9 @@
     "wordCount": 1200,
     "keyword": "planning faq cannabis",
     "permalink": "planning-faq",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-01-11"
   },
   {
     "id": "7e798bf1",
@@ -890,7 +1048,9 @@
     "wordCount": 1800,
     "keyword": "grow tents cannabis",
     "permalink": "grow-tents",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-01-13"
   },
   {
     "id": "25aaeac3",
@@ -901,7 +1061,9 @@
     "wordCount": 1800,
     "keyword": "grow lights cannabis",
     "permalink": "grow-lights",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-01-15"
   },
   {
     "id": "7611bb8e",
@@ -912,7 +1074,9 @@
     "wordCount": 1800,
     "keyword": "led lights cannabis",
     "permalink": "led-lights",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-01-18"
   },
   {
     "id": "4f40a4ba",
@@ -923,7 +1087,9 @@
     "wordCount": 1800,
     "keyword": "hps lights cannabis",
     "permalink": "hps-lights",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-01-20"
   },
   {
     "id": "55349732",
@@ -934,7 +1100,9 @@
     "wordCount": 1800,
     "keyword": "ventilation cannabis",
     "permalink": "ventilation",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-01-22"
   },
   {
     "id": "9bc79d65",
@@ -945,7 +1113,9 @@
     "wordCount": 1800,
     "keyword": "carbon filters cannabis",
     "permalink": "carbon-filters",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-01-25"
   },
   {
     "id": "61ce6c07",
@@ -956,7 +1126,9 @@
     "wordCount": 1800,
     "keyword": "fans cannabis",
     "permalink": "fans",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-01-27"
   },
   {
     "id": "a4041da2",
@@ -967,7 +1139,9 @@
     "wordCount": 1800,
     "keyword": "containers cannabis",
     "permalink": "containers",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-01-29"
   },
   {
     "id": "d8a4043b",
@@ -978,7 +1152,9 @@
     "wordCount": 1800,
     "keyword": "growing mediums cannabis",
     "permalink": "growing-mediums",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-02-01"
   },
   {
     "id": "42a218be",
@@ -989,7 +1165,9 @@
     "wordCount": 1800,
     "keyword": "soil cannabis",
     "permalink": "soil",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-02-03"
   },
   {
     "id": "b4c34f5d",
@@ -1000,7 +1178,9 @@
     "wordCount": 1800,
     "keyword": "coco coir cannabis",
     "permalink": "coco-coir",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-02-05"
   },
   {
     "id": "10cdeb2c",
@@ -1011,7 +1191,9 @@
     "wordCount": 1800,
     "keyword": "hydroponics cannabis",
     "permalink": "hydroponics",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-02-08"
   },
   {
     "id": "932bd1e9",
@@ -1022,7 +1204,9 @@
     "wordCount": 1800,
     "keyword": "water quality cannabis",
     "permalink": "water-quality",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-02-10"
   },
   {
     "id": "cdedb01c",
@@ -1033,7 +1217,9 @@
     "wordCount": 1800,
     "keyword": "ph meters cannabis",
     "permalink": "ph-meters",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-02-12"
   },
   {
     "id": "2f93b4cd",
@@ -1044,7 +1230,9 @@
     "wordCount": 1800,
     "keyword": "ec meters cannabis",
     "permalink": "ec-meters",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-02-15"
   },
   {
     "id": "a5c98f38",
@@ -1055,7 +1243,9 @@
     "wordCount": 1800,
     "keyword": "timers cannabis",
     "permalink": "timers",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-02-17"
   },
   {
     "id": "7f19df55",
@@ -1066,7 +1256,9 @@
     "wordCount": 1800,
     "keyword": "environmental controllers cannabis",
     "permalink": "environmental-controllers",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-02-19"
   },
   {
     "id": "5db4e97b",
@@ -1077,7 +1269,9 @@
     "wordCount": 1800,
     "keyword": "essential tools cannabis",
     "permalink": "essential-tools",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-02-22"
   },
   {
     "id": "b39ca15a",
@@ -1088,7 +1282,9 @@
     "wordCount": 1800,
     "keyword": "equipment maintenance cannabis",
     "permalink": "equipment-maintenance",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-02-24"
   },
   {
     "id": "b13a1078",
@@ -1099,7 +1295,9 @@
     "wordCount": 1200,
     "keyword": "equipment faq cannabis",
     "permalink": "equipment-faq",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-02-26"
   },
   {
     "id": "6891b36e",
@@ -1110,7 +1308,9 @@
     "wordCount": 1800,
     "keyword": "setting up a grow tent cannabis",
     "permalink": "setting-up-a-grow-tent",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-03-01"
   },
   {
     "id": "5100c2b9",
@@ -1121,7 +1321,9 @@
     "wordCount": 1800,
     "keyword": "airflow setup cannabis",
     "permalink": "airflow-setup",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-03-03"
   },
   {
     "id": "1cf5a224",
@@ -1132,7 +1334,9 @@
     "wordCount": 1800,
     "keyword": "lighting layout cannabis",
     "permalink": "lighting-layout",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-03-05"
   },
   {
     "id": "1b8c4fe7",
@@ -1143,7 +1347,9 @@
     "wordCount": 1800,
     "keyword": "water system cannabis",
     "permalink": "water-system",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-03-08"
   },
   {
     "id": "dddc6c9e",
@@ -1154,7 +1360,9 @@
     "wordCount": 1800,
     "keyword": "environmental testing cannabis",
     "permalink": "environmental-testing",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-03-10"
   },
   {
     "id": "44652eb7",
@@ -1165,7 +1373,9 @@
     "wordCount": 1800,
     "keyword": "first run checklist cannabis",
     "permalink": "first-run-checklist",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-03-12"
   },
   {
     "id": "b42dde6c",
@@ -1176,7 +1386,9 @@
     "wordCount": 1800,
     "keyword": "sanitation cannabis",
     "permalink": "sanitation",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-03-15"
   },
   {
     "id": "17d28fbd",
@@ -1187,7 +1399,9 @@
     "wordCount": 1800,
     "keyword": "organization cannabis",
     "permalink": "organization",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-03-17"
   },
   {
     "id": "c773204d",
@@ -1198,7 +1412,9 @@
     "wordCount": 1800,
     "keyword": "setup mistakes cannabis",
     "permalink": "setup-mistakes",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-03-19"
   },
   {
     "id": "e228822b",
@@ -1209,7 +1425,9 @@
     "wordCount": 1200,
     "keyword": "setup faq cannabis",
     "permalink": "setup-faq",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-03-22"
   },
   {
     "id": "c5873457",
@@ -1220,7 +1438,9 @@
     "wordCount": 1800,
     "keyword": "introduction to germination cannabis",
     "permalink": "introduction-to-germination",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-03-24"
   },
   {
     "id": "f2ea09b2",
@@ -1231,7 +1451,9 @@
     "wordCount": 1800,
     "keyword": "seed preparation cannabis",
     "permalink": "seed-preparation",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-03-26"
   },
   {
     "id": "84f445e5",
@@ -1242,7 +1464,9 @@
     "wordCount": 1800,
     "keyword": "paper towel method cannabis",
     "permalink": "paper-towel-method",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-03-29"
   },
   {
     "id": "af60de9d",
@@ -1253,7 +1477,9 @@
     "wordCount": 1800,
     "keyword": "direct sow method cannabis",
     "permalink": "direct-sow-method",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-03-31"
   },
   {
     "id": "addf5711",
@@ -1264,7 +1490,9 @@
     "wordCount": 1800,
     "keyword": "water soak method cannabis",
     "permalink": "water-soak-method",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-04-02"
   },
   {
     "id": "d495577b",
@@ -1275,7 +1503,9 @@
     "wordCount": 1800,
     "keyword": "ideal conditions cannabis",
     "permalink": "ideal-conditions",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-04-05"
   },
   {
     "id": "1ff37e36",
@@ -1286,7 +1516,9 @@
     "wordCount": 1800,
     "keyword": "common problems cannabis",
     "permalink": "common-problems",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-04-07"
   },
   {
     "id": "a85f1548",
@@ -1297,7 +1529,9 @@
     "wordCount": 1800,
     "keyword": "healthy seedlings cannabis",
     "permalink": "healthy-seedlings",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-04-09"
   },
   {
     "id": "d0a5277a",
@@ -1308,7 +1542,9 @@
     "wordCount": 1800,
     "keyword": "transplanting seedlings cannabis",
     "permalink": "transplanting-seedlings",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-04-12"
   },
   {
     "id": "3a60f658",
@@ -1319,7 +1555,9 @@
     "wordCount": 1200,
     "keyword": "germination faq cannabis",
     "permalink": "germination-faq",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-04-14"
   },
   {
     "id": "74db5eeb",
@@ -1330,7 +1568,9 @@
     "wordCount": 1800,
     "keyword": "seedling overview cannabis",
     "permalink": "seedling-overview",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-04-16"
   },
   {
     "id": "29e2fa2c",
@@ -1341,7 +1581,9 @@
     "wordCount": 1800,
     "keyword": "lighting cannabis",
     "permalink": "lighting",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-04-19"
   },
   {
     "id": "3b6fd728",
@@ -1352,7 +1594,9 @@
     "wordCount": 1800,
     "keyword": "watering cannabis",
     "permalink": "watering",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-04-21"
   },
   {
     "id": "bcfbba52",
@@ -1363,7 +1607,9 @@
     "wordCount": 1800,
     "keyword": "humidity cannabis",
     "permalink": "humidity",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-04-23"
   },
   {
     "id": "072553eb",
@@ -1374,7 +1620,9 @@
     "wordCount": 1800,
     "keyword": "temperature cannabis",
     "permalink": "temperature",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-04-26"
   },
   {
     "id": "aa52e823",
@@ -1385,7 +1633,9 @@
     "wordCount": 1800,
     "keyword": "nutrition cannabis",
     "permalink": "nutrition",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-04-28"
   },
   {
     "id": "74d026b6",
@@ -1396,7 +1646,9 @@
     "wordCount": 1800,
     "keyword": "growth milestones cannabis",
     "permalink": "growth-milestones",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-04-30"
   },
   {
     "id": "782867a8",
@@ -1407,7 +1659,9 @@
     "wordCount": 1800,
     "keyword": "transplanting cannabis",
     "permalink": "transplanting",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-05-03"
   },
   {
     "id": "bf1dca4f",
@@ -1418,7 +1672,9 @@
     "wordCount": 1200,
     "keyword": "seedling faq cannabis",
     "permalink": "seedling-faq",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-05-05"
   },
   {
     "id": "0279ac45",
@@ -1429,7 +1685,9 @@
     "wordCount": 1800,
     "keyword": "vegetative overview cannabis",
     "permalink": "vegetative-overview",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-05-07"
   },
   {
     "id": "1e62f2e0",
@@ -1440,7 +1698,9 @@
     "wordCount": 1800,
     "keyword": "light schedule cannabis",
     "permalink": "light-schedule",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-05-10"
   },
   {
     "id": "23708ae6",
@@ -1451,7 +1711,9 @@
     "wordCount": 1800,
     "keyword": "training basics cannabis",
     "permalink": "training-basics",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-05-12"
   },
   {
     "id": "35542184",
@@ -1462,7 +1724,9 @@
     "wordCount": 1800,
     "keyword": "pruning cannabis",
     "permalink": "pruning",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-05-14"
   },
   {
     "id": "ec889444",
@@ -1473,7 +1737,9 @@
     "wordCount": 1800,
     "keyword": "growth problems cannabis",
     "permalink": "growth-problems",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-05-17"
   },
   {
     "id": "dd413aa8",
@@ -1484,7 +1750,9 @@
     "wordCount": 1800,
     "keyword": "canopy management cannabis",
     "permalink": "canopy-management",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-05-19"
   },
   {
     "id": "a99973e6",
@@ -1495,7 +1763,9 @@
     "wordCount": 1200,
     "keyword": "vegetative faq cannabis",
     "permalink": "vegetative-faq",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-05-21"
   },
   {
     "id": "75423314",
@@ -1506,7 +1776,9 @@
     "wordCount": 1800,
     "keyword": "flowering overview cannabis",
     "permalink": "flowering-overview",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-05-24"
   },
   {
     "id": "ccfa80e1",
@@ -1517,7 +1789,9 @@
     "wordCount": 1800,
     "keyword": "triggering flowering cannabis",
     "permalink": "triggering-flowering",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-05-26"
   },
   {
     "id": "3c3219d3",
@@ -1528,7 +1802,9 @@
     "wordCount": 1800,
     "keyword": "light cycle cannabis",
     "permalink": "light-cycle",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-05-28"
   },
   {
     "id": "6ecd95d9",
@@ -1539,7 +1815,9 @@
     "wordCount": 1800,
     "keyword": "bud development cannabis",
     "permalink": "bud-development",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-05-31"
   },
   {
     "id": "ab860fd1",
@@ -1550,7 +1828,9 @@
     "wordCount": 1800,
     "keyword": "late flowering cannabis",
     "permalink": "late-flowering",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-06-02"
   },
   {
     "id": "52ccffe1",
@@ -1561,7 +1841,9 @@
     "wordCount": 1800,
     "keyword": "ripeness cannabis",
     "permalink": "ripeness",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-06-04"
   },
   {
     "id": "bbd3969d",
@@ -1572,7 +1854,9 @@
     "wordCount": 1800,
     "keyword": "harvest readiness cannabis",
     "permalink": "harvest-readiness",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-06-07"
   },
   {
     "id": "8a0bd55a",
@@ -1583,7 +1867,9 @@
     "wordCount": 1200,
     "keyword": "flowering faq cannabis",
     "permalink": "flowering-faq",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-06-09"
   },
   {
     "id": "c180c5fc",
@@ -1594,7 +1880,9 @@
     "wordCount": 1800,
     "keyword": "lst cannabis",
     "permalink": "lst",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-06-11"
   },
   {
     "id": "b51d939b",
@@ -1605,7 +1893,9 @@
     "wordCount": 1800,
     "keyword": "hst cannabis",
     "permalink": "hst",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-06-14"
   },
   {
     "id": "09756063",
@@ -1616,7 +1906,9 @@
     "wordCount": 1800,
     "keyword": "topping cannabis",
     "permalink": "topping",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-06-16"
   },
   {
     "id": "f2bc4bf6",
@@ -1627,7 +1919,9 @@
     "wordCount": 1800,
     "keyword": "fim cannabis",
     "permalink": "fim",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-06-18"
   },
   {
     "id": "fbf04f81",
@@ -1638,7 +1932,9 @@
     "wordCount": 1800,
     "keyword": "mainlining cannabis",
     "permalink": "mainlining",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-06-21"
   },
   {
     "id": "2d0bd07a",
@@ -1649,7 +1945,9 @@
     "wordCount": 1800,
     "keyword": "scrog cannabis",
     "permalink": "scrog",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-06-23"
   },
   {
     "id": "8b463d19",
@@ -1660,7 +1958,9 @@
     "wordCount": 1800,
     "keyword": "sog cannabis",
     "permalink": "sog",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-06-25"
   },
   {
     "id": "83cf8b38",
@@ -1671,7 +1971,9 @@
     "wordCount": 1800,
     "keyword": "defoliation cannabis",
     "permalink": "defoliation",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-06-28"
   },
   {
     "id": "2da1c8a1",
@@ -1682,7 +1984,9 @@
     "wordCount": 1800,
     "keyword": "lollipopping cannabis",
     "permalink": "lollipopping",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-06-30"
   },
   {
     "id": "d91de0cd",
@@ -1693,7 +1997,9 @@
     "wordCount": 1200,
     "keyword": "training faq cannabis",
     "permalink": "training-faq",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-07-02"
   },
   {
     "id": "44a2216d",
@@ -1704,7 +2010,9 @@
     "wordCount": 1800,
     "keyword": "macronutrients cannabis",
     "permalink": "macronutrients",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-07-05"
   },
   {
     "id": "1715a4d8",
@@ -1715,7 +2023,9 @@
     "wordCount": 1800,
     "keyword": "micronutrients cannabis",
     "permalink": "micronutrients",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-07-07"
   },
   {
     "id": "3c592989",
@@ -1726,7 +2036,9 @@
     "wordCount": 1800,
     "keyword": "nitrogen cannabis",
     "permalink": "nitrogen",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-07-09"
   },
   {
     "id": "987184b5",
@@ -1737,7 +2049,9 @@
     "wordCount": 1800,
     "keyword": "phosphorus cannabis",
     "permalink": "phosphorus",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-07-12"
   },
   {
     "id": "6a410567",
@@ -1748,7 +2062,9 @@
     "wordCount": 1800,
     "keyword": "potassium cannabis",
     "permalink": "potassium",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-07-14"
   },
   {
     "id": "23d2e86b",
@@ -1759,7 +2075,9 @@
     "wordCount": 1800,
     "keyword": "calcium cannabis",
     "permalink": "calcium",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-07-16"
   },
   {
     "id": "ec55dcb0",
@@ -1770,7 +2088,9 @@
     "wordCount": 1800,
     "keyword": "magnesium cannabis",
     "permalink": "magnesium",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-07-19"
   },
   {
     "id": "952c4400",
@@ -1781,7 +2101,9 @@
     "wordCount": 1800,
     "keyword": "iron cannabis",
     "permalink": "iron",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-07-21"
   },
   {
     "id": "79b5801b",
@@ -1792,7 +2114,9 @@
     "wordCount": 1800,
     "keyword": "feeding schedules cannabis",
     "permalink": "feeding-schedules",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-07-23"
   },
   {
     "id": "8b441fcb",
@@ -1803,7 +2127,9 @@
     "wordCount": 1800,
     "keyword": "organic nutrients cannabis",
     "permalink": "organic-nutrients",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-07-26"
   },
   {
     "id": "b3f3661a",
@@ -1814,7 +2140,9 @@
     "wordCount": 1800,
     "keyword": "synthetic nutrients cannabis",
     "permalink": "synthetic-nutrients",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-07-28"
   },
   {
     "id": "7bf15f2f",
@@ -1825,7 +2153,9 @@
     "wordCount": 1800,
     "keyword": "deficiencies cannabis",
     "permalink": "deficiencies",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-07-30"
   },
   {
     "id": "c771749b",
@@ -1836,7 +2166,9 @@
     "wordCount": 1800,
     "keyword": "toxicities cannabis",
     "permalink": "toxicities",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-08-02"
   },
   {
     "id": "a7358787",
@@ -1847,7 +2179,9 @@
     "wordCount": 1200,
     "keyword": "nutrient faq cannabis",
     "permalink": "nutrient-faq",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-08-04"
   },
   {
     "id": "817b0c53",
@@ -1858,7 +2192,9 @@
     "wordCount": 1800,
     "keyword": "ph cannabis",
     "permalink": "ph",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-08-06"
   },
   {
     "id": "4d129a24",
@@ -1869,7 +2205,9 @@
     "wordCount": 1800,
     "keyword": "ec cannabis",
     "permalink": "ec",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-08-09"
   },
   {
     "id": "849da344",
@@ -1880,7 +2218,9 @@
     "wordCount": 1800,
     "keyword": "ppm cannabis",
     "permalink": "ppm",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-08-11"
   },
   {
     "id": "6ad9ae8d",
@@ -1891,7 +2231,9 @@
     "wordCount": 1800,
     "keyword": "vpd cannabis",
     "permalink": "vpd",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-08-13"
   },
   {
     "id": "15d915a1",
@@ -1902,7 +2244,9 @@
     "wordCount": 1800,
     "keyword": "co2 basics cannabis",
     "permalink": "co2-basics",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-08-16"
   },
   {
     "id": "d411b070",
@@ -1913,7 +2257,9 @@
     "wordCount": 1800,
     "keyword": "airflow cannabis",
     "permalink": "airflow",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-08-18"
   },
   {
     "id": "a0b273ef",
@@ -1924,7 +2270,9 @@
     "wordCount": 1200,
     "keyword": "environment faq cannabis",
     "permalink": "environment-faq",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-08-20"
   },
   {
     "id": "f0d94d28",
@@ -1935,7 +2283,9 @@
     "wordCount": 1800,
     "keyword": "healthy plant indicators cannabis",
     "permalink": "healthy-plant-indicators",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-08-23"
   },
   {
     "id": "173acc8c",
@@ -1946,7 +2296,9 @@
     "wordCount": 1800,
     "keyword": "spider mites cannabis",
     "permalink": "spider-mites",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-08-25"
   },
   {
     "id": "8935bae6",
@@ -1957,7 +2309,9 @@
     "wordCount": 1800,
     "keyword": "thrips cannabis",
     "permalink": "thrips",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-08-27"
   },
   {
     "id": "596a210d",
@@ -1968,7 +2322,9 @@
     "wordCount": 1800,
     "keyword": "aphids cannabis",
     "permalink": "aphids",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-08-30"
   },
   {
     "id": "1cbc17e7",
@@ -1979,7 +2335,9 @@
     "wordCount": 1800,
     "keyword": "fungus gnats cannabis",
     "permalink": "fungus-gnats",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-09-01"
   },
   {
     "id": "e1f058cb",
@@ -1990,7 +2348,9 @@
     "wordCount": 1800,
     "keyword": "root rot cannabis",
     "permalink": "root-rot",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-09-03"
   },
   {
     "id": "3eda9394",
@@ -2001,7 +2361,9 @@
     "wordCount": 1800,
     "keyword": "bud rot cannabis",
     "permalink": "bud-rot",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-09-06"
   },
   {
     "id": "98681285",
@@ -2012,7 +2374,9 @@
     "wordCount": 1800,
     "keyword": "powdery mildew cannabis",
     "permalink": "powdery-mildew",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-09-08"
   },
   {
     "id": "511a7cee",
@@ -2023,7 +2387,9 @@
     "wordCount": 1800,
     "keyword": "heat stress cannabis",
     "permalink": "heat-stress",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-09-10"
   },
   {
     "id": "7cd45488",
@@ -2034,7 +2400,9 @@
     "wordCount": 1800,
     "keyword": "light burn cannabis",
     "permalink": "light-burn",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-09-13"
   },
   {
     "id": "23ca0ebb",
@@ -2045,7 +2413,9 @@
     "wordCount": 1800,
     "keyword": "overwatering cannabis",
     "permalink": "overwatering",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-09-15"
   },
   {
     "id": "0a1ac420",
@@ -2056,7 +2426,9 @@
     "wordCount": 1800,
     "keyword": "underwatering cannabis",
     "permalink": "underwatering",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-09-17"
   },
   {
     "id": "03cd7d0f",
@@ -2067,7 +2439,9 @@
     "wordCount": 1800,
     "keyword": "integrated pest management cannabis",
     "permalink": "integrated-pest-management",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-09-20"
   },
   {
     "id": "2b18d95d",
@@ -2078,7 +2452,9 @@
     "wordCount": 1200,
     "keyword": "plant health faq cannabis",
     "permalink": "plant-health-faq",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-09-22"
   },
   {
     "id": "daa72303",
@@ -2089,7 +2465,9 @@
     "wordCount": 1800,
     "keyword": "when to harvest cannabis",
     "permalink": "when-to-harvest",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-09-24"
   },
   {
     "id": "09792f6b",
@@ -2100,7 +2478,9 @@
     "wordCount": 1800,
     "keyword": "harvest tools cannabis",
     "permalink": "harvest-tools",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-09-27"
   },
   {
     "id": "8c09d6e7",
@@ -2111,7 +2491,9 @@
     "wordCount": 1800,
     "keyword": "cutting plants cannabis",
     "permalink": "cutting-plants",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-09-29"
   },
   {
     "id": "b4dc0f8b",
@@ -2122,7 +2504,9 @@
     "wordCount": 1800,
     "keyword": "wet trim cannabis",
     "permalink": "wet-trim",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-10-01"
   },
   {
     "id": "7ca3d904",
@@ -2133,7 +2517,9 @@
     "wordCount": 1800,
     "keyword": "dry trim cannabis",
     "permalink": "dry-trim",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-10-04"
   },
   {
     "id": "b37e8db4",
@@ -2144,7 +2530,9 @@
     "wordCount": 1800,
     "keyword": "harvest mistakes cannabis",
     "permalink": "harvest-mistakes",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-10-06"
   },
   {
     "id": "0575e999",
@@ -2155,7 +2543,9 @@
     "wordCount": 1200,
     "keyword": "harvest faq cannabis",
     "permalink": "harvest-faq",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-10-08"
   },
   {
     "id": "42680c5b",
@@ -2166,7 +2556,9 @@
     "wordCount": 1800,
     "keyword": "drying basics cannabis",
     "permalink": "drying-basics",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-10-11"
   },
   {
     "id": "b448c022",
@@ -2177,7 +2569,9 @@
     "wordCount": 1800,
     "keyword": "ideal drying conditions cannabis",
     "permalink": "ideal-drying-conditions",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-10-13"
   },
   {
     "id": "76518510",
@@ -2188,7 +2582,9 @@
     "wordCount": 1800,
     "keyword": "curing basics cannabis",
     "permalink": "curing-basics",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-10-15"
   },
   {
     "id": "51eefa9d",
@@ -2199,7 +2595,9 @@
     "wordCount": 1800,
     "keyword": "burping jars cannabis",
     "permalink": "burping-jars",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-10-18"
   },
   {
     "id": "62f6572a",
@@ -2210,7 +2608,9 @@
     "wordCount": 1800,
     "keyword": "long-term curing cannabis",
     "permalink": "long-term-curing",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-10-20"
   },
   {
     "id": "366676ac",
@@ -2221,7 +2621,9 @@
     "wordCount": 1200,
     "keyword": "drying faq cannabis",
     "permalink": "drying-faq",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-10-22"
   },
   {
     "id": "c86423fd",
@@ -2232,7 +2634,9 @@
     "wordCount": 1800,
     "keyword": "storage basics cannabis",
     "permalink": "storage-basics",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-10-25"
   },
   {
     "id": "7e155a8c",
@@ -2243,7 +2647,9 @@
     "wordCount": 1800,
     "keyword": "humidity packs cannabis",
     "permalink": "humidity-packs",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-10-27"
   },
   {
     "id": "b03f2a46",
@@ -2254,7 +2660,9 @@
     "wordCount": 1800,
     "keyword": "avoiding mold cannabis",
     "permalink": "avoiding-mold",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-10-29"
   },
   {
     "id": "866a1644",
@@ -2265,7 +2673,9 @@
     "wordCount": 1800,
     "keyword": "long-term storage cannabis",
     "permalink": "long-term-storage",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-11-01"
   },
   {
     "id": "4809e8d8",
@@ -2276,7 +2686,9 @@
     "wordCount": 1800,
     "keyword": "breeding basics cannabis",
     "permalink": "breeding-basics",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-11-03"
   },
   {
     "id": "bfc1e0f8",
@@ -2287,7 +2699,9 @@
     "wordCount": 1800,
     "keyword": "cloning cannabis",
     "permalink": "cloning",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-11-05"
   },
   {
     "id": "62dc0efe",
@@ -2298,7 +2712,9 @@
     "wordCount": 1800,
     "keyword": "mother plants cannabis",
     "permalink": "mother-plants",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-11-08"
   },
   {
     "id": "d222117a",
@@ -2309,7 +2725,9 @@
     "wordCount": 1800,
     "keyword": "living soil cannabis",
     "permalink": "living-soil",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-11-10"
   },
   {
     "id": "bed7e285",
@@ -2320,7 +2738,9 @@
     "wordCount": 1800,
     "keyword": "compost tea cannabis",
     "permalink": "compost-tea",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-11-12"
   },
   {
     "id": "c081c9e0",
@@ -2331,7 +2751,9 @@
     "wordCount": 1800,
     "keyword": "integrated systems cannabis",
     "permalink": "integrated-systems",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-11-15"
   },
   {
     "id": "0f1da499",
@@ -2342,7 +2764,9 @@
     "wordCount": 1800,
     "keyword": "sustainable growing cannabis",
     "permalink": "sustainable-growing",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-11-17"
   },
   {
     "id": "4d59cd8b",
@@ -2353,7 +2777,9 @@
     "wordCount": 1800,
     "keyword": "commercial cultivation overview cannabis",
     "permalink": "commercial-cultivation-overview",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-11-19"
   },
   {
     "id": "b64d6c7e",
@@ -2364,7 +2790,9 @@
     "wordCount": 1800,
     "keyword": "research trends cannabis",
     "permalink": "research-trends",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-11-22"
   },
   {
     "id": "13e0a957",
@@ -2375,7 +2803,9 @@
     "wordCount": 1200,
     "keyword": "advanced faq cannabis",
     "permalink": "advanced-faq",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-11-24"
   },
   {
     "id": "90d47406",
@@ -2386,7 +2816,9 @@
     "wordCount": 1800,
     "keyword": "glossary (a–z) cannabis",
     "permalink": "glossary-a-z",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-11-26"
   },
   {
     "id": "2fc6ea34",
@@ -2397,7 +2829,9 @@
     "wordCount": 1800,
     "keyword": "abbreviations cannabis",
     "permalink": "abbreviations",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-11-29"
   },
   {
     "id": "4d800246",
@@ -2408,7 +2842,9 @@
     "wordCount": 1800,
     "keyword": "common measurements cannabis",
     "permalink": "common-measurements",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-12-01"
   },
   {
     "id": "5c012d4a",
@@ -2419,7 +2855,9 @@
     "wordCount": 1800,
     "keyword": "reference tables cannabis",
     "permalink": "reference-tables",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-12-03"
   },
   {
     "id": "2b2be5d7",
@@ -2430,6 +2868,8 @@
     "wordCount": 1800,
     "keyword": "final resources cannabis",
     "permalink": "final-resources",
-    "status": "planned"
+    "status": "planned",
+    "batchId": "a3aea526",
+    "scheduledDate": "2027-12-06"
   }
 ]

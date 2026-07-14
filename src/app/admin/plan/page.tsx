@@ -86,6 +86,13 @@ export default function ContentPlanPage() {
   const [batchCadenceCount, setBatchCadenceCount] = useState(3);
   const [batchCadencePer, setBatchCadencePer] = useState<"day" | "week">("week");
 
+  const [groupName, setGroupName] = useState("");
+  const [groupStartDate, setGroupStartDate] = useState(todayStr);
+  const [groupCadenceCount, setGroupCadenceCount] = useState(3);
+  const [groupCadencePer, setGroupCadencePer] = useState<"day" | "week">("week");
+  const [groupBusy, setGroupBusy] = useState(false);
+  const [groupError, setGroupError] = useState("");
+
   const load = () => {
     fetch("/api/admin/plan")
       .then((r) => r.json())
@@ -185,6 +192,34 @@ export default function ContentPlanPage() {
       load();
     } else {
       setImportError(data.error ?? "Import failed");
+    }
+  };
+
+  const groupUngrouped = async (entryIds: string[]) => {
+    if (!groupName.trim()) {
+      setGroupError("Batch name is required");
+      return;
+    }
+    setGroupBusy(true);
+    setGroupError("");
+    const res = await fetch("/api/admin/plan/batches", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: groupName,
+        startDate: groupStartDate,
+        cadenceCount: groupCadenceCount,
+        cadencePer: groupCadencePer,
+        entryIds,
+      }),
+    });
+    setGroupBusy(false);
+    const data = await res.json().catch(() => ({}));
+    if (res.ok) {
+      setGroupName("");
+      load();
+    } else {
+      setGroupError(data.error ?? "Grouping failed");
     }
   };
 
@@ -617,6 +652,70 @@ export default function ContentPlanPage() {
               Ungrouped
             </h2>
           )}
+
+          <div className="mt-3 rounded-xl border border-neutral-200 bg-neutral-50/60 p-4">
+            <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.15em] text-neutral-400">
+              <Layers size={13} /> Group these {ungrouped.length} entries into a scheduled batch
+            </p>
+            <p className="mt-1.5 text-xs text-neutral-400">
+              Applies to all {ungrouped.length} ungrouped entries above, in their current order.
+              Already-published ones just join the batch for reporting; only unwritten ones get a
+              computed target date.
+            </p>
+            <div className="mt-3 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+              <div className="sm:col-span-2">
+                <label className={label}>Batch name</label>
+                <input
+                  value={groupName}
+                  onChange={(e) => setGroupName(e.target.value)}
+                  placeholder="e.g. Full Content Plan"
+                  className={input}
+                />
+              </div>
+              <div>
+                <label className={label}>Start date</label>
+                <input
+                  type="date"
+                  value={groupStartDate}
+                  onChange={(e) => setGroupStartDate(e.target.value)}
+                  className={input}
+                />
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className={label}>Cadence</label>
+                  <input
+                    type="number"
+                    min={1}
+                    max={50}
+                    value={groupCadenceCount}
+                    onChange={(e) => setGroupCadenceCount(parseInt(e.target.value, 10) || 1)}
+                    className={input}
+                  />
+                </div>
+                <div>
+                  <label className={label}>Per</label>
+                  <select
+                    value={groupCadencePer}
+                    onChange={(e) => setGroupCadencePer(e.target.value as "day" | "week")}
+                    className={input}
+                  >
+                    <option value="day">day</option>
+                    <option value="week">week</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            {groupError && <p className="mt-3 text-sm text-red-600">{groupError}</p>}
+            <button
+              onClick={() => groupUngrouped(ungrouped.map((e) => e.id))}
+              disabled={groupBusy}
+              className="mt-4 flex items-center gap-1.5 rounded-lg bg-neutral-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700 disabled:opacity-50"
+            >
+              <Layers size={15} /> {groupBusy ? "Grouping…" : `Group All ${ungrouped.length}`}
+            </button>
+          </div>
+
           <div className="mt-3 overflow-x-auto rounded-xl border border-neutral-200">
             <table className="w-full min-w-[900px] text-left text-[13px]">
               {headerRow}

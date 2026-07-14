@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "id": "a3aea526",
+    "name": "Full Content Plan",
+    "createdAt": "2026-07-14T22:49:50.672Z",
+    "startDate": "2026-07-15",
+    "cadenceCount": 3,
+    "cadencePer": "week"
+  }
+]

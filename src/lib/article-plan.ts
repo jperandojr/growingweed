@@ -271,3 +271,48 @@ export function importPlanEntries(
   if (added.length > 0) writePlan([...entries, ...added]);
   return { added: added.length, skipped, batch };
 }
+
+/** Retroactively group existing plan entries (e.g. from an import that
+ *  predates batching) into a new batch. Only entries with status "planned"
+ *  get a computed `scheduledDate` — already-published entries just join the
+ *  batch for grouping/reporting, keeping their real publish date on the
+ *  post itself rather than getting an overwritten one. Order follows the
+ *  entries' existing order in the plan. */
+export function groupExistingEntries(
+  entryIds: string[],
+  batchInput: ImportBatchInput
+): Batch {
+  const entries = listPlan();
+  const idSet = new Set(entryIds);
+  const targeted = entries.filter((e) => idSet.has(e.id));
+  if (targeted.length === 0) throw new Error("No matching plan entries");
+
+  const batch: Batch = {
+    id: crypto.randomUUID().slice(0, 8),
+    name: batchInput.name.trim(),
+    createdAt: new Date().toISOString(),
+    startDate: batchInput.startDate,
+    cadenceCount: batchInput.cadenceCount,
+    cadencePer: batchInput.cadencePer,
+  };
+
+  const plannedCount = targeted.filter((e) => e.status === "planned").length;
+  const dates = computeScheduleDates(
+    batch.startDate,
+    batch.cadenceCount,
+    batch.cadencePer,
+    plannedCount
+  );
+  let di = 0;
+  for (const e of entries) {
+    if (!idSet.has(e.id)) continue;
+    e.batchId = batch.id;
+    if (e.status === "planned") e.scheduledDate = dates[di++];
+  }
+
+  const batches = listBatches();
+  batches.push(batch);
+  writeBatches(batches);
+  writePlan(entries);
+  return batch;
+}
