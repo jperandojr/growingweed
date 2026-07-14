@@ -10,17 +10,13 @@ import {
 } from "react";
 
 type StoreState = {
-  wishlist: string[];
   compare: string[];
 };
 
 const STORAGE_KEY = "growingweed-store-v2";
 
 type StoreContextValue = {
-  wishlist: string[];
   compare: string[];
-  toggleWishlist: (strainSlug: string) => void;
-  isInWishlist: (strainSlug: string) => boolean;
   toggleCompare: (strainSlug: string) => void;
   isInCompare: (strainSlug: string) => boolean;
 };
@@ -28,22 +24,21 @@ type StoreContextValue = {
 const StoreContext = createContext<StoreContextValue | null>(null);
 
 function loadInitial(): StoreState {
-  if (typeof window === "undefined") return { wishlist: [], compare: [] };
+  if (typeof window === "undefined") return { compare: [] };
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY);
-    if (!raw) return { wishlist: [], compare: [] };
+    if (!raw) return { compare: [] };
     const parsed = JSON.parse(raw);
     return {
-      wishlist: parsed.wishlist ?? [],
       compare: parsed.compare ?? [],
     };
   } catch {
-    return { wishlist: [], compare: [] };
+    return { compare: [] };
   }
 }
 
 export function StoreProvider({ children }: { children: ReactNode }) {
-  const [state, setState] = useState<StoreState>({ wishlist: [], compare: [] });
+  const [state, setState] = useState<StoreState>({ compare: [] });
   const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
@@ -59,15 +54,6 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   }, [state, hydrated]);
 
-  const toggleWishlist = (strainSlug: string) => {
-    setState((prev) => ({
-      ...prev,
-      wishlist: prev.wishlist.includes(strainSlug)
-        ? prev.wishlist.filter((s) => s !== strainSlug)
-        : [...prev.wishlist, strainSlug],
-    }));
-  };
-
   const toggleCompare = (strainSlug: string) => {
     setState((prev) => {
       if (prev.compare.includes(strainSlug)) {
@@ -80,10 +66,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
 
   const value: StoreContextValue = useMemo(
     () => ({
-      wishlist: state.wishlist,
       compare: state.compare,
-      toggleWishlist,
-      isInWishlist: (slug: string) => state.wishlist.includes(slug),
       toggleCompare,
       isInCompare: (slug: string) => state.compare.includes(slug),
     }),

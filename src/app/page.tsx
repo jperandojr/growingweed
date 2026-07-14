@@ -105,7 +105,6 @@ export default function Home() {
           <span>30,000+ Strains Compared</span>
           <span>9 Trusted Seed Banks</span>
           <span>Guides For Every Grow Stage</span>
-          <span>100% Independent</span>
         </div>
       </section>
 

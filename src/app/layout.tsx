@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import { SITE_URL } from "@/lib/sitemap-config";
 import { StoreProvider } from "@/context/StoreContext";
@@ -58,6 +59,9 @@ export default function RootLayout({
           <Footer />
           <PurchaseProof />
         </StoreProvider>
+        {process.env.NODE_ENV === "production" && (
+          <GoogleAnalytics gaId="G-W8W95NV7C2" />
+        )}
       </body>
     </html>
   );

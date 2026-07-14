@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Heart, Scale, ExternalLink, ChevronDown, ChevronUp, CheckCircle2, Circle, Gift, Globe2 } from "lucide-react";
+import { Scale, ExternalLink, ChevronDown, ChevronUp, CheckCircle2, Circle, Gift, Globe2 } from "lucide-react";
 import { Strain } from "@/lib/types";
 import { seedBanks } from "@/data/seedbanks";
 import { useStore } from "@/context/StoreContext";
@@ -19,7 +19,7 @@ const PINNED_BANKS = ["herbies", "crop-king-seeds"];
 const VISIBLE_BANKS = new Set(["herbies", "seedsman", "crop-king-seeds"]);
 
 export function StrainBuyBox({ strain }: { strain: Strain }) {
-  const { toggleWishlist, isInWishlist, toggleCompare, isInCompare } = useStore();
+  const { toggleCompare, isInCompare } = useStore();
   const [refBank, setRefBank] = useState<string | null>(null);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [showAll, setShowAll] = useState(false);
@@ -66,7 +66,6 @@ export function StrainBuyBox({ strain }: { strain: Strain }) {
 
   const [selectedBankId] = bankRows[Math.min(selectedIndex, bankRows.length - 1)];
   const bank = seedBanks.find((s) => s.id === selectedBankId)!;
-  const wished = isInWishlist(strain.slug);
   const compared = isInCompare(strain.slug);
 
   return (
@@ -185,17 +184,6 @@ export function StrainBuyBox({ strain }: { strain: Strain }) {
       </p>
 
       <div className="mt-3 flex gap-2">
-        <button
-          onClick={() => toggleWishlist(strain.slug)}
-          className={`flex flex-1 items-center justify-center gap-2 rounded-md border py-2.5 text-sm font-medium transition ${
-            wished
-              ? "border-emerald-600 bg-emerald-50 text-emerald-700"
-              : "border-neutral-200 text-neutral-600 hover:border-neutral-300"
-          }`}
-        >
-          <Heart size={15} className={wished ? "fill-emerald-600" : ""} />
-          {wished ? "In Wishlist" : "Add to Wishlist"}
-        </button>
         <button
           onClick={() => toggleCompare(strain.slug)}
           className={`flex flex-1 items-center justify-center gap-2 rounded-md border py-2.5 text-sm font-medium transition ${

@@ -3,11 +3,12 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Search, Repeat, Heart, X } from "lucide-react";
+import { Search, Repeat, Menu, X } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { useStore } from "@/context/StoreContext";
 
-// Minimalist single-tier header: wordmark, plain-text nav, three quiet icons.
+// Minimalist single-tier header: wordmark, plain-text nav, quiet icons,
+// hamburger drawer for mobile.
 const nav = [
   { label: "Strains", href: "/strains" },
   { label: "Seed Banks", href: "/seed-banks" },
@@ -26,10 +27,11 @@ function CountBadge({ count }: { count: number }) {
 }
 
 export function Header() {
-  const { wishlist, compare } = useStore();
+  const { compare } = useStore();
   const router = useRouter();
   const [query, setQuery] = useState("");
   const [searchOpen, setSearchOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const submitSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -73,14 +75,14 @@ export function Header() {
             <Repeat size={19} />
             <CountBadge count={compare.length} />
           </Link>
-          <Link
-            href="/wishlist"
-            aria-label="Wishlist"
-            className="relative transition hover:text-neutral-900"
+          <button
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            className="transition hover:text-neutral-900 md:hidden"
           >
-            <Heart size={19} />
-            <CountBadge count={wishlist.length} />
-          </Link>
+            {menuOpen ? <X size={21} /> : <Menu size={21} />}
+          </button>
         </div>
       </div>
 
@@ -106,13 +108,20 @@ export function Header() {
         </div>
       )}
 
-      <nav className="no-scrollbar flex items-center gap-6 overflow-x-auto px-6 pb-3 text-sm text-neutral-500 md:hidden">
-        {nav.map((item) => (
-          <Link key={item.label} href={item.href} className="shrink-0 hover:text-neutral-900">
-            {item.label}
-          </Link>
-        ))}
-      </nav>
+      {menuOpen && (
+        <nav className="flex flex-col gap-1 border-t border-neutral-100 px-6 py-3 text-sm text-neutral-600 md:hidden">
+          {nav.map((item) => (
+            <Link
+              key={item.label}
+              href={item.href}
+              onClick={() => setMenuOpen(false)}
+              className="rounded-md px-2 py-2.5 hover:bg-neutral-50 hover:text-neutral-900"
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+      )}
     </header>
   );
 }

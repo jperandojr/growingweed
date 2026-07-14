@@ -74,7 +74,7 @@ export function getEditablePost(slug: string): BlogPost | null {
 const RESERVED_SLUGS = new Set([
   "about", "admin", "api", "community", "compare", "deals", "grow-guides",
   "help", "privacy", "robots.txt", "seed-banks", "sitemap", "sitemap.xml",
-  "sitemaps", "strains", "terms", "wishlist",
+  "sitemaps", "strains", "terms",
 ]);
 
 export function savePost(input: PostInput, { isNew }: { isNew: boolean }): { slug: string } {

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Heart, Scale } from "lucide-react";
+import { Scale } from "lucide-react";
 import { Strain } from "@/lib/types";
 import { StrainVisual } from "./StrainVisual";
 import { StarRating } from "./StarRating";
@@ -19,9 +19,8 @@ const badgeStyles: Record<string, string> = {
 };
 
 export function ProductCard({ strain }: { strain: Strain }) {
-  const { toggleWishlist, isInWishlist, toggleCompare, isInCompare } = useStore();
+  const { toggleCompare, isInCompare } = useStore();
   const offer = lowestOffer(strain);
-  const wished = isInWishlist(strain.slug);
   const compared = isInCompare(strain.slug);
 
   return (
@@ -39,18 +38,6 @@ export function ProductCard({ strain }: { strain: Strain }) {
         </div>
       </Link>
       <div className="absolute top-2 right-2 flex flex-col gap-1.5 opacity-0 group-hover:opacity-100 transition">
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            toggleWishlist(strain.slug);
-          }}
-          aria-label="Toggle wishlist"
-          className={`flex h-8 w-8 items-center justify-center rounded-full shadow ${
-            wished ? "bg-emerald-600 text-white" : "bg-white text-neutral-600"
-          }`}
-        >
-          <Heart size={15} className={wished ? "fill-white" : ""} />
-        </button>
         <button
           onClick={(e) => {
             e.preventDefault();

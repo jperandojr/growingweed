@@ -14,7 +14,6 @@ const mainPages = [
   { label: "Community", href: "/community" },
   { label: "Help Center", href: "/help" },
   { label: "About Us", href: "/about" },
-  { label: "Wishlist", href: "/wishlist" },
   { label: "Compare", href: "/compare" },
 ];
 
