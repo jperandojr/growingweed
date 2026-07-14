@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "content-writer": {
+      "source": "aaron-he-zhu/aaron-marketing-skills",
+      "sourceType": "github",
+      "skillPath": "seo-geo/build/content-writer/SKILL.md",
+      "computedHash": "27d14fe8110b2b367e25425176af110e7f62466a2cf6f5dfc2c63a2439fb2bcc"
+    }
+  }
+}
