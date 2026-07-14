@@ -94,7 +94,7 @@ export default async function BlogPostPage({
 
 /** Renders article content. Supported blocks (separated by blank lines):
  *  "## " headings (auto-anchored, collected into a TOC when there are 3+),
- *  a block starting with "TL;DR" (styled key-takeaways box),
+ *  a block starting with "TL;DR" or "Key Takeaways" (styled key-takeaways box),
  *  "- " bullet lists, and paragraphs with [label](/path) inline links. */
 function headingId(text: string) {
   return text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
@@ -148,7 +148,7 @@ function ArticleBody({ content }: { content: string }) {
       );
     }
     const lines = block.split("\n").map((l) => l.trim());
-    if (/^tl;?dr\b/i.test(lines[0])) {
+    if (/^(tl;?dr|key takeaways)\b/i.test(lines[0])) {
       const items = lines.slice(1).map((l) => l.replace(/^-\s*/, "")).filter(Boolean);
       return (
         <aside
@@ -156,7 +156,7 @@ function ArticleBody({ content }: { content: string }) {
           className="mt-6 rounded-xl border border-emerald-100 bg-emerald-50/60 px-5 py-4"
         >
           <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-emerald-700">
-            TL;DR — Key Takeaways
+            Key Takeaways
           </p>
           <ul className="mt-2 space-y-1.5 text-sm leading-relaxed text-neutral-700">
             {items.map((item, j) => (

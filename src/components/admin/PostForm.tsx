@@ -310,7 +310,7 @@ export function PostForm({ post, brief }: { post?: BlogPost; brief?: PlanBrief }
       <div>
         <label className={label}>
           Content — blank line between paragraphs, &quot;## &quot;/&quot;### &quot; headings, &quot;- &quot; lists,
-          a &quot;TL;DR&quot; block for key takeaways, [label](/path) links · {words} words (~{Math.max(1, Math.round(words / 150))} min read)
+          a &quot;Key Takeaways&quot; block, [label](/path) links · {words} words (~{Math.max(1, Math.round(words / 150))} min read)
         </label>
         <textarea
           value={content}
