@@ -52,7 +52,12 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const blob = await put(`uploads/${crypto.randomUUID()}.webp`, webpBuffer, {
+    // sharp's output buffer can be backed by a SharedArrayBuffer internally
+    // (its native pixel-buffer pooling), which @vercel/blob's put() rejects
+    // outright. Buffer.from(buffer) copies into a fresh, plain ArrayBuffer
+    // regardless of what backed the source.
+    const safeBuffer = Buffer.from(webpBuffer);
+    const blob = await put(`uploads/${crypto.randomUUID()}.webp`, safeBuffer, {
       access: "public",
       contentType: "image/webp",
     });
