@@ -6,7 +6,6 @@ import { getSeedBankBySlug } from "@/data/seedbanks";
 import { strains } from "@/data/strains";
 import { StarRating } from "@/components/StarRating";
 import { ProductCard } from "@/components/ProductCard";
-import { RefBankTracker } from "@/components/RefBankTracker";
 import { JsonLd } from "@/components/JsonLd";
 import { seedBankSchema, breadcrumbSchema } from "@/lib/schema";
 
@@ -52,7 +51,6 @@ export default async function SeedBankDetailPage({
 
   return (
     <div className="mx-auto max-w-7xl px-6 py-10">
-      <RefBankTracker bankId={seedBank.id} />
       <JsonLd
         data={[
           seedBankSchema(seedBank),

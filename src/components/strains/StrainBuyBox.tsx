@@ -1,70 +1,33 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Scale, ExternalLink, ChevronDown, ChevronUp, CheckCircle2, Circle, Gift, Globe2 } from "lucide-react";
+import { Scale, ExternalLink, CheckCircle2, Circle, Gift, Globe2 } from "lucide-react";
 import { Strain } from "@/lib/types";
 import { seedBanks } from "@/data/seedbanks";
 import { useStore } from "@/context/StoreContext";
 import { StarRating } from "@/components/StarRating";
 
-const TOP_OFFERS = 3;
-
-// Partner banks always lead the recommendations, in this order.
-const PINNED_BANKS = ["herbies", "crop-king-seeds"];
-
-// Temporary: only show these seed banks on the product page; the rest are
-// hidden for now (still shown elsewhere, e.g. /seed-banks).
-const VISIBLE_BANKS = new Set(["herbies", "seedsman", "crop-king-seeds"]);
+// These partner banks always show, in this order, on every strain page —
+// regardless of whether we have specific offer data for them.
+const PINNED_BANKS = ["herbies", "crop-king-seeds", "seedsman"];
 
 export function StrainBuyBox({ strain }: { strain: Strain }) {
   const { toggleCompare, isInCompare } = useStore();
-  const [refBank, setRefBank] = useState<string | null>(null);
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [showAll, setShowAll] = useState(false);
 
-  // If the visitor arrived from a seed bank page, that bank ranks 3rd.
-  useEffect(() => {
-    try {
-      const ref = window.sessionStorage.getItem("growingweed-ref-bank");
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      if (ref) setRefBank(ref);
-    } catch {
-      // storage unavailable — ignore
-    }
-  }, []);
-
-  // Recommended order: pinned partners, then the referring bank, then by rating.
-  const tier = (bankId: string) => {
-    const pinned = PINNED_BANKS.indexOf(bankId);
-    if (pinned !== -1) return pinned;
-    if (refBank && bankId === refBank) return PINNED_BANKS.length;
-    return PINNED_BANKS.length + 1;
-  };
-  // One row per bank, listing every seed type it stocks for this strain.
+  // One row per bank, listing every seed type it stocks for this strain
+  // (empty if we have no offer data for that bank on this strain).
   const byBank = new Map<string, string[]>();
   for (const o of strain.offers) {
     if (!byBank.has(o.seedBankId)) byBank.set(o.seedBankId, []);
     const bankTypes = byBank.get(o.seedBankId)!;
     if (!bankTypes.includes(o.type)) bankTypes.push(o.type);
   }
-  const allBankRows = [...byBank.entries()].sort(([a], [b]) => {
-    const t = tier(a) - tier(b);
-    if (t !== 0) return t;
-    const ra = seedBanks.find((s) => s.id === a)?.rating ?? 0;
-    const rb = seedBanks.find((s) => s.id === b)?.rating ?? 0;
-    return rb - ra;
-  });
-  // Only the three visible banks, unless none of them carry this strain —
-  // then fall back to whoever does, so the page never has an empty buy box.
-  const visibleOnly = allBankRows.filter(([bankId]) => VISIBLE_BANKS.has(bankId));
-  const bankRows = visibleOnly.length > 0 ? visibleOnly : allBankRows;
+  const bankRows: [string, string[]][] = PINNED_BANKS.map((id) => [id, byBank.get(id) ?? []]);
 
-  const visibleRows = showAll ? bankRows : bankRows.slice(0, TOP_OFFERS);
-  const hiddenCount = bankRows.length - TOP_OFFERS;
-
-  const [selectedBankId] = bankRows[Math.min(selectedIndex, bankRows.length - 1)];
+  const [selectedBankId] = bankRows[selectedIndex];
   const bank = seedBanks.find((s) => s.id === selectedBankId)!;
   const compared = isInCompare(strain.slug);
 
@@ -76,7 +39,7 @@ export function StrainBuyBox({ strain }: { strain: Strain }) {
           Trusted stores stocking {strain.name} seeds
         </p>
         <div className="flex flex-col gap-2.5">
-          {visibleRows.map(([bankId, bankTypes], i) => {
+          {bankRows.map(([bankId, bankTypes], i) => {
             const sb = seedBanks.find((s) => s.id === bankId)!;
             const selected = selectedIndex === i;
             return (
@@ -150,24 +113,6 @@ export function StrainBuyBox({ strain }: { strain: Strain }) {
             );
           })}
         </div>
-
-        {hiddenCount > 0 && (
-          <button
-            onClick={() => setShowAll((v) => !v)}
-            className="mt-2 flex w-full items-center justify-center gap-1 rounded-md border border-dashed border-neutral-200 py-2 text-xs font-medium text-neutral-500 hover:border-emerald-300 hover:text-emerald-700 transition"
-          >
-            {showAll ? (
-              <>
-                View Less <ChevronUp size={13} />
-              </>
-            ) : (
-              <>
-                View {hiddenCount} More Seed Bank{hiddenCount > 1 ? "s" : ""}{" "}
-                <ChevronDown size={13} />
-              </>
-            )}
-          </button>
-        )}
       </div>
 
       <a
