@@ -1,5 +1,5 @@
 import { BlogPost } from "./types";
-import { readJson, writeJson, deleteJson, existsJson, listJsonPathnames } from "./blob-json";
+import { readJson, writeJson, deleteJson, existsJson, listJsonPathnames } from "./json-store";
 
 // Blob-backed post storage for the admin dashboard. Editable posts live as
 // JSON blobs under content/articles/; the founding posts in src/data/blog.ts

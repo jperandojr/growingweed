@@ -1,5 +1,5 @@
 import crypto from "node:crypto";
-import { readJson, writeJson } from "./blob-json";
+import { readJson, writeJson } from "./json-store";
 
 // Editorial plan storage: upcoming articles with their brief, managed from
 // the admin dashboard (or bulk-imported from CSV). Entries get marked
