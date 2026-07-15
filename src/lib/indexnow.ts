@@ -8,7 +8,7 @@ import { SITE_URL } from "./sitemap-config";
 // prove domain ownership by matching /{key}.txt at the site root, and it's
 // safe to commit. Override with an INDEXNOW_KEY env var if you rotate it;
 // if you do, also rename public/{key}.txt to match.
-const INDEXNOW_KEY = process.env.INDEXNOW_KEY ?? "dd22d5351a8145e3ba8f80d256ecd1ab";
+const INDEXNOW_KEY = process.env.INDEXNOW_KEY ?? "8f08d7690518436b9e29c85c9a84cff2";
 
 /** Pings IndexNow with one or more absolute or root-relative URLs. Best
  *  effort: failures are swallowed so a publish action never fails because
