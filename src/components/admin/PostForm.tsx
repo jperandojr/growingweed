@@ -313,8 +313,7 @@ export function PostForm({ post, brief }: { post?: BlogPost; brief?: PlanBrief }
             {uploadError && <p className="mt-1.5 text-xs text-red-600">{uploadError}</p>}
             <p className="mt-1.5 text-xs text-neutral-400">
               Leave blank to use the generated cover art (cover hue above). Uploads are converted
-              to WebP and compressed automatically. Uploads need a writable filesystem — they work
-              in local dev, but not on Vercel in production; paste an external URL there instead.
+              to WebP, compressed, and stored in Vercel Blob.
             </p>
           </div>
         </div>

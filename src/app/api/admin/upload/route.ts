@@ -1,22 +1,18 @@
-import fs from "node:fs";
-import path from "node:path";
 import crypto from "node:crypto";
 import sharp from "sharp";
+import { put } from "@vercel/blob";
 import { NextRequest, NextResponse } from "next/server";
 
-// Saves uploaded images into /public/uploads so they can be referenced by
-// URL from post content. This writes to the filesystem, so it only works
-// where the app runs with a writable disk (local dev, or a persistent
-// server) — on Vercel's serverless runtime the filesystem is read-only in
-// production, so this will fail there. Upload locally and commit the file
-// (or deploy) so it ships as a static asset, or paste an external URL
-// instead.
+// Uploaded images are stored in Vercel Blob (not the local filesystem —
+// Vercel's serverless functions can't write to disk in production, which
+// this sidesteps entirely). Every upload is converted to WebP and
+// compressed via sharp before it's stored, regardless of source format.
 //
-// Every upload is converted to WebP and compressed, regardless of the
-// source format, so PNGs (or anything else) never end up shipping
-// uncompressed to the site.
+// Requires a Blob store linked to the project (Vercel Dashboard -> Storage
+// -> Create Database -> Blob), which provisions BLOB_READ_WRITE_TOKEN
+// automatically in production. For local dev, run `vercel env pull
+// .env.local` after linking the project to get that token locally.
 
-const UPLOAD_DIR = path.join(process.cwd(), "public", "uploads");
 const MAX_BYTES = 8 * 1024 * 1024;
 const MAX_WIDTH = 2000; // downscale anything wider; never upscale
 const WEBP_QUALITY = 82;
@@ -55,19 +51,19 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Couldn't process that image" }, { status: 400 });
   }
 
-  const filename = `${crypto.randomUUID()}.webp`;
   try {
-    fs.mkdirSync(UPLOAD_DIR, { recursive: true });
-    fs.writeFileSync(path.join(UPLOAD_DIR, filename), webpBuffer);
-  } catch {
+    const blob = await put(`uploads/${crypto.randomUUID()}.webp`, webpBuffer, {
+      access: "public",
+      contentType: "image/webp",
+    });
+    return NextResponse.json({ url: blob.url });
+  } catch (e) {
+    const message = e instanceof Error ? e.message : String(e);
     return NextResponse.json(
       {
-        error:
-          "Couldn't write the file — this filesystem is read-only (expected on Vercel in production). Upload from local dev, or paste an external image URL instead.",
+        error: `Upload to Vercel Blob failed: ${message}. Make sure a Blob store is linked to this project (Vercel Dashboard -> Storage), and that BLOB_READ_WRITE_TOKEN is set (run "vercel env pull .env.local" for local dev after linking).`,
       },
       { status: 500 }
     );
   }
-
-  return NextResponse.json({ url: `/uploads/${filename}` });
 }
