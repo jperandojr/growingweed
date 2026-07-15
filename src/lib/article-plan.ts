@@ -3,8 +3,8 @@ import { readJson, writeJson } from "./json-store";
 
 // Editorial plan storage: upcoming articles with their brief, managed from
 // the admin dashboard (or bulk-imported from CSV). Entries get marked
-// "published" when a post is written from them. Backed by Vercel Blob (not
-// the local filesystem) so writes persist on Vercel's serverless runtime.
+// "published" when a post is written from them. Backed by Supabase Storage
+// (not the local filesystem) so writes persist on Vercel's serverless runtime.
 //
 // Bulk CSV imports are grouped into a "batch" with a release cadence (e.g.
 // 3/week starting Aug 1). Each entry in the batch gets a computed

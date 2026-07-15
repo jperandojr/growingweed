@@ -54,7 +54,7 @@ export async function POST(req: NextRequest) {
   // sharp's output buffer can be backed by a SharedArrayBuffer internally
   // (its native pixel-buffer pooling); Buffer.from(buffer) copies into a
   // fresh, plain ArrayBuffer, which sidesteps that regardless of what
-  // backed the source (kept as a precaution, same fix Vercel Blob needed).
+  // backed the source.
   const safeBuffer = Buffer.from(webpBuffer);
 
   const { error } = await supabase.storage.from(MEDIA_BUCKET).upload(pathname, safeBuffer, {

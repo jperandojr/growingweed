@@ -1,10 +1,11 @@
 import { BlogPost } from "./types";
 import { readJson, writeJson, deleteJson, existsJson, listJsonPathnames } from "./json-store";
 
-// Blob-backed post storage for the admin dashboard. Editable posts live as
-// JSON blobs under content/articles/; the founding posts in src/data/blog.ts
-// are read-only from the dashboard's perspective. Backed by Vercel Blob (not
-// the local filesystem) so writes persist on Vercel's serverless runtime.
+// Supabase-backed post storage for the admin dashboard. Editable posts live
+// as JSON objects under content/articles/; the founding posts in
+// src/data/blog.ts are read-only from the dashboard's perspective. Backed
+// by Supabase Storage (not the local filesystem) so writes persist on
+// Vercel's serverless runtime.
 
 const ARTICLES_PREFIX = "content/articles/";
 
