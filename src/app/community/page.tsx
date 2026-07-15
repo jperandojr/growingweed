@@ -3,7 +3,7 @@ import { NotebookPen, MessagesSquare, Image as ImageIcon } from "lucide-react";
 import { getAllPosts } from "@/data/blog";
 
 export const metadata = {
-  title: "Community — GrowingWeed",
+  title: "Community | GrowingWeed",
   description: "Join the GrowingWeed grower community: grow diaries, forums, and photo galleries.",
 };
 

@@ -1,4 +1,4 @@
-export const metadata = { title: "Terms of Service — GrowingWeed" };
+export const metadata = { title: "Terms of Service | GrowingWeed" };
 
 export default function TermsPage() {
   return (

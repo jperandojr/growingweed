@@ -16,7 +16,7 @@ export async function generateMetadata({
     (k) => typeof sp[k] === "string" && sp[k]
   );
   return {
-    title: "Shop Cannabis Seeds — GrowingWeed",
+    title: "Shop Cannabis Seeds | GrowingWeed",
     description:
       "Browse and filter 30,000+ cannabis strains by seed type, category, effect, flavor and THC level.",
     alternates: { canonical: "/strains" },

@@ -26,7 +26,7 @@ export async function generateMetadata({
   const strain = getStrainBySlug(slug);
   if (!strain) return {};
   return {
-    title: `${strain.name} — Buy Cannabis Seeds | GrowingWeed`,
+    title: `${strain.name} | Buy Cannabis Seeds | GrowingWeed`,
     description: strain.description,
     alternates: { canonical: `/strains/${strain.slug}` },
   };

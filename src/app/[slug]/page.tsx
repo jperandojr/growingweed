@@ -22,7 +22,7 @@ export async function generateMetadata({
   const post = getPostBySlug(slug);
   if (!post) return {};
   return {
-    title: post.metaTitle?.trim() || `${post.title} — GrowingWeed Grow Guides`,
+    title: post.metaTitle?.trim() || `${post.title} | GrowingWeed Grow Guides`,
     description: post.excerpt,
     alternates: { canonical: `/${post.slug}` },
     ...(post.keyword ? { keywords: [post.keyword] } : {}),

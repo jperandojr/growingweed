@@ -22,7 +22,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "GrowingWeed — Learn to Grow Cannabis & Choose the Right Seeds",
+  title: "GrowingWeed | Learn to Grow Cannabis & Choose the Right Seeds",
   description:
     "The grower's guide to cannabis: cultivation guides for every stage of the grow, plus 30,000+ strains compared across the world's most trusted seed banks.",
   robots: {

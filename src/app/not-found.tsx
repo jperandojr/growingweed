@@ -9,7 +9,7 @@ import { PostCover } from "@/components/PostCover";
 // Explicit noindex here overrides the root layout's default "index, follow"
 // (without it, both would render as contradictory robots meta tags).
 export const metadata = {
-  title: "Page Not Found — GrowingWeed",
+  title: "Page Not Found | GrowingWeed",
   robots: { index: false, follow: true },
 };
 

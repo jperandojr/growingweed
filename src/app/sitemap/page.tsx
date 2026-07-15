@@ -3,7 +3,7 @@ import { seedBanks } from "@/data/seedbanks";
 import { strains } from "@/data/strains";
 import { getAllPosts } from "@/data/blog";
 
-export const metadata = { title: "Sitemap — GrowingWeed" };
+export const metadata = { title: "Sitemap | GrowingWeed" };
 
 const mainPages = [
   { label: "Home", href: "/" },

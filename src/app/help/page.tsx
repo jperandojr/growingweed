@@ -2,7 +2,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { faqSchema } from "@/lib/schema";
 
 export const metadata = {
-  title: "Help Center — GrowingWeed",
+  title: "Help Center | GrowingWeed",
   description: "Frequently asked questions about shipping, payment, germination and returns.",
 };
 

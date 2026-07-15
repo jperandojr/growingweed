@@ -3,7 +3,7 @@ import { lowestOffer } from "@/lib/strain-utils";
 import { ProductCard } from "@/components/ProductCard";
 
 export const metadata = {
-  title: "Deals & Discounts — GrowingWeed",
+  title: "Deals & Discounts | GrowingWeed",
   description: "The best current deals and discounts on cannabis seeds from top seed banks.",
 };
 

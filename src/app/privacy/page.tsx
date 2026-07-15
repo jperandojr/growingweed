@@ -1,4 +1,4 @@
-export const metadata = { title: "Privacy Policy — GrowingWeed" };
+export const metadata = { title: "Privacy Policy | GrowingWeed" };
 
 export default function PrivacyPage() {
   return (

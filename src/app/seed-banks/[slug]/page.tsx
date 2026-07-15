@@ -25,7 +25,7 @@ export async function generateMetadata({
   const { page } = await searchParams;
   const paginated = !!page && page !== "1";
   return {
-    title: `${seedBank.name} — Seed Bank Reviews & Strains | GrowingWeed`,
+    title: `${seedBank.name} | Seed Bank Reviews & Strains | GrowingWeed`,
     description: seedBank.description,
     // paginated views canonicalize to the first page and stay out of the index
     alternates: { canonical: `/seed-banks/${seedBank.slug}` },

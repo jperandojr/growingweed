@@ -5,7 +5,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { itemListSchema } from "@/lib/schema";
 
 export const metadata = {
-  title: "Seed Banks — GrowingWeed",
+  title: "Seed Banks | GrowingWeed",
   description: "Compare the world's top cannabis seed banks by rating, catalog size, and shipping.",
 };
 

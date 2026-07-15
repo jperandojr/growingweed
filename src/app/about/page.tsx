@@ -2,7 +2,7 @@ import { seedBanks } from "@/data/seedbanks";
 import { strains } from "@/data/strains";
 
 export const metadata = {
-  title: "About Us — GrowingWeed",
+  title: "About Us | GrowingWeed",
   description: "GrowingWeed aggregates the world's best cannabis seed banks in one marketplace.",
 };
 
@@ -33,7 +33,7 @@ export default function AboutPage() {
       <p className="mt-4 text-xs leading-relaxed text-neutral-400">
         GrowingWeed doesn&apos;t sell seeds directly and never handles your payment. When you buy
         through links on our site we may earn a commission from the seed bank, at no extra cost
-        to you — it&apos;s how we keep GrowingWeed free and independent.
+        to you. It&apos;s how we keep GrowingWeed free and independent.
       </p>
     </div>
   );

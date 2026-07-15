@@ -7,7 +7,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { itemListSchema } from "@/lib/schema";
 
 export const metadata = {
-  title: "Grow Guides & Blog — GrowingWeed",
+  title: "Grow Guides & Blog | GrowingWeed",
   description: "Cannabis growing guides, strain reviews, and industry news to help you grow better.",
 };
 

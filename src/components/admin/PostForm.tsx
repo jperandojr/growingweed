@@ -330,7 +330,7 @@ export function PostForm({ post, brief }: { post?: BlogPost; brief?: PlanBrief }
             <input
               value={metaTitle}
               onChange={(e) => setMetaTitle(e.target.value)}
-              placeholder={title ? `${title} — GrowingWeed Grow Guides` : "Falls back to the post title"}
+              placeholder={title ? `${title} | GrowingWeed Grow Guides` : "Falls back to the post title"}
               className={input}
             />
           </div>
