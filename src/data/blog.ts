@@ -18,24 +18,25 @@ function loadPublishedArticles(): BlogPost[] {
   }
 }
 
+/** Whether a post's date+time (UTC) has arrived. `publishTime` defaults to
+ *  00:00 UTC when omitted (start of `date`). */
+export function isPublishedNow(post: { date: string; publishTime?: string }): boolean {
+  return new Date(`${post.date}T${post.publishTime ?? "00:00"}:00Z`).getTime() <= Date.now();
+}
+
 /** Public posts, newest first, excluding anything whose date+time (UTC) is
  *  still in the future. A post written with a future `date`/`publishTime`
  *  (e.g. from a scheduled content-plan batch) stays hidden until that
  *  moment arrives — no publish step needed, it just becomes visible on its
- *  own. `publishTime` defaults to 00:00 UTC when omitted (start of `date`),
- *  matching pre-time-of-day behavior. Reads the articles directory on every
- *  call so newly written/now-due files appear without a restart (in
- *  dev/dynamic rendering). */
+ *  own. Reads the articles directory on every call so newly written/now-due
+ *  files appear without a restart (in dev/dynamic rendering). */
 export function getAllPosts(): BlogPost[] {
-  const now = Date.now();
   return loadPublishedArticles()
-    .map((post) => ({
-      post,
-      publishAt: new Date(`${post.date}T${post.publishTime ?? "00:00"}:00Z`).getTime(),
-    }))
-    .filter((x) => x.publishAt <= now)
-    .sort((a, b) => b.publishAt - a.publishAt)
-    .map((x) => x.post);
+    .filter(isPublishedNow)
+    .sort((a, b) =>
+      new Date(`${b.date}T${b.publishTime ?? "00:00"}:00Z`).getTime() -
+      new Date(`${a.date}T${a.publishTime ?? "00:00"}:00Z`).getTime()
+    );
 }
 
 export function getPostBySlug(slug: string) {
