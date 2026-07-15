@@ -8,7 +8,7 @@ export default async function NewPostPage({
   searchParams: Promise<{ plan?: string }>;
 }) {
   const { plan: planId } = await searchParams;
-  const entry = planId ? listPlan().find((e) => e.id === planId) : undefined;
+  const entry = planId ? (await listPlan()).find((e) => e.id === planId) : undefined;
   const brief = entry
     ? {
         planId: entry.id,

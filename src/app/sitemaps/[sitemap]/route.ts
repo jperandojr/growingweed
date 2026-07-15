@@ -48,7 +48,7 @@ export async function GET(
   }
 
   if (sitemap === "posts.xml") {
-    const urls: SitemapUrl[] = getAllPosts().map((p) => ({
+    const urls: SitemapUrl[] = (await getAllPosts()).map((p) => ({
       loc: `${SITE_URL}/${p.slug}`,
       lastmod: p.date,
       changefreq: "monthly",

@@ -132,6 +132,6 @@ export async function POST(req: NextRequest) {
     return { rowNumber: i + 2, input }; // +2: header is row 1
   });
 
-  const result = importPlanEntries(parsed, batchInput);
+  const result = await importPlanEntries(parsed, batchInput);
   return NextResponse.json(result);
 }

@@ -66,8 +66,8 @@ function SectionHeader({
   );
 }
 
-export default function Home() {
-  const blogPosts = getAllPosts();
+export default async function Home() {
+  const blogPosts = await getAllPosts();
   const [featuredPost, ...restPosts] = blogPosts;
   const picks = editorsPicks
     .map(getStrainBySlug)

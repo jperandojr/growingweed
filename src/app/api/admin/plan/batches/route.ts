@@ -6,8 +6,8 @@ import {
   CadencePer,
 } from "@/lib/article-plan";
 
-export function GET() {
-  return NextResponse.json(listBatches());
+export async function GET() {
+  return NextResponse.json(await listBatches());
 }
 
 // Retroactively group existing plan entries into a new scheduled batch.
@@ -36,15 +36,14 @@ export async function POST(req: NextRequest) {
 
   let entryIds = body.entryIds;
   if (!entryIds || entryIds.length === 0) {
-    entryIds = listPlan()
-      .filter((e) => !e.batchId)
-      .map((e) => e.id);
+    const plan = await listPlan();
+    entryIds = plan.filter((e) => !e.batchId).map((e) => e.id);
   }
   if (entryIds.length === 0)
     return NextResponse.json({ error: "No ungrouped entries to group" }, { status: 400 });
 
   try {
-    const batch = groupExistingEntries(entryIds, {
+    const batch = await groupExistingEntries(entryIds, {
       name: body.name,
       startDate: body.startDate,
       cadenceCount: body.cadenceCount ?? 1,

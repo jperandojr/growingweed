@@ -17,8 +17,8 @@ const mainPages = [
   { label: "Compare", href: "/compare" },
 ];
 
-export default function SitemapPage() {
-  const blogPosts = getAllPosts();
+export default async function SitemapPage() {
+  const blogPosts = await getAllPosts();
   return (
     <div className="mx-auto max-w-5xl px-6 py-10">
       <h1 className="mb-6 text-2xl font-bold text-neutral-900">Sitemap</h1>

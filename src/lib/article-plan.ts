@@ -1,10 +1,10 @@
-import fs from "node:fs";
-import path from "node:path";
 import crypto from "node:crypto";
+import { readJson, writeJson } from "./blob-json";
 
 // Editorial plan storage: upcoming articles with their brief, managed from
 // the admin dashboard (or bulk-imported from CSV). Entries get marked
-// "published" when a post is written from them.
+// "published" when a post is written from them. Backed by Vercel Blob (not
+// the local filesystem) so writes persist on Vercel's serverless runtime.
 //
 // Bulk CSV imports are grouped into a "batch" with a release cadence (e.g.
 // 3/week starting Aug 1). Each entry in the batch gets a computed
@@ -14,8 +14,8 @@ import crypto from "node:crypto";
 // article is written, it goes live on its own on the scheduled date with no
 // further action needed.
 
-const PLAN_FILE = path.join(process.cwd(), "content", "article-plan.json");
-const BATCHES_FILE = path.join(process.cwd(), "content", "content-batches.json");
+const PLAN_PATH = "content/article-plan.json";
+const BATCHES_PATH = "content/content-batches.json";
 
 export type PlanDifficulty = "Beginner" | "Intermediate" | "Advanced";
 
@@ -35,17 +35,12 @@ export type PlanEntry = {
   scheduledTime?: string; // HH:MM UTC, computed from the batch's daily times
 };
 
-export function listPlan(): PlanEntry[] {
-  try {
-    return JSON.parse(fs.readFileSync(PLAN_FILE, "utf8"));
-  } catch {
-    return [];
-  }
+export function listPlan(): Promise<PlanEntry[]> {
+  return readJson<PlanEntry[]>(PLAN_PATH, []);
 }
 
-function writePlan(entries: PlanEntry[]) {
-  fs.mkdirSync(path.dirname(PLAN_FILE), { recursive: true });
-  fs.writeFileSync(PLAN_FILE, JSON.stringify(entries, null, 2));
+function writePlan(entries: PlanEntry[]): Promise<void> {
+  return writeJson(PLAN_PATH, entries);
 }
 
 export type CadencePer = "day" | "week";
@@ -62,17 +57,12 @@ export type Batch = {
   // at 00:00 UTC together; cadenceCount is forced to times.length
 };
 
-export function listBatches(): Batch[] {
-  try {
-    return JSON.parse(fs.readFileSync(BATCHES_FILE, "utf8"));
-  } catch {
-    return [];
-  }
+export function listBatches(): Promise<Batch[]> {
+  return readJson<Batch[]>(BATCHES_PATH, []);
 }
 
-function writeBatches(batches: Batch[]) {
-  fs.mkdirSync(path.dirname(BATCHES_FILE), { recursive: true });
-  fs.writeFileSync(BATCHES_FILE, JSON.stringify(batches, null, 2));
+function writeBatches(batches: Batch[]): Promise<void> {
+  return writeJson(BATCHES_PATH, batches);
 }
 
 /** Spreads `count` items across a cadence of `cadenceCount` per `cadencePer`,
@@ -127,13 +117,13 @@ export function computeSchedule(
   }));
 }
 
-export function deleteBatch(id: string): boolean {
-  const batches = listBatches();
+export async function deleteBatch(id: string): Promise<boolean> {
+  const batches = await listBatches();
   const next = batches.filter((b) => b.id !== id);
   if (next.length === batches.length) return false;
-  writeBatches(next);
+  await writeBatches(next);
   // Unlink member entries rather than deleting them.
-  const entries = listPlan();
+  const entries = await listPlan();
   let touched = false;
   for (const e of entries) {
     if (e.batchId === id) {
@@ -143,7 +133,7 @@ export function deleteBatch(id: string): boolean {
       touched = true;
     }
   }
-  if (touched) writePlan(entries);
+  if (touched) await writePlan(entries);
   return true;
 }
 
@@ -192,43 +182,43 @@ function toEntry(input: PlanInput): Omit<PlanEntry, "id" | "status"> {
   };
 }
 
-export function addPlanEntry(input: PlanInput): PlanEntry {
-  const entries = listPlan();
+export async function addPlanEntry(input: PlanInput): Promise<PlanEntry> {
+  const entries = await listPlan();
   const entry: PlanEntry = {
     id: crypto.randomUUID().slice(0, 8),
     ...toEntry(input),
     status: "planned",
   };
   entries.push(entry);
-  writePlan(entries);
+  await writePlan(entries);
   return entry;
 }
 
-export function updatePlanEntry(id: string, input: PlanInput): PlanEntry | null {
-  const entries = listPlan();
+export async function updatePlanEntry(id: string, input: PlanInput): Promise<PlanEntry | null> {
+  const entries = await listPlan();
   const idx = entries.findIndex((e) => e.id === id);
   if (idx === -1) return null;
   entries[idx] = { ...entries[idx], ...toEntry(input) };
-  writePlan(entries);
+  await writePlan(entries);
   return entries[idx];
 }
 
-export function deletePlanEntry(id: string): boolean {
-  const entries = listPlan();
+export async function deletePlanEntry(id: string): Promise<boolean> {
+  const entries = await listPlan();
   const next = entries.filter((e) => e.id !== id);
   if (next.length === entries.length) return false;
-  writePlan(next);
+  await writePlan(next);
   return true;
 }
 
 /** Called when a post is created from a plan entry. */
-export function markPlanPublished(id: string, slug: string) {
-  const entries = listPlan();
+export async function markPlanPublished(id: string, slug: string): Promise<void> {
+  const entries = await listPlan();
   const entry = entries.find((e) => e.id === id);
   if (!entry) return;
   entry.status = "published";
   entry.slug = slug;
-  writePlan(entries);
+  await writePlan(entries);
 }
 
 export type ImportRowResult = { row: number; title: string; reason: string };
@@ -252,11 +242,11 @@ export type ImportBatchInput = {
  *  When `batchInput` is given, all added rows are grouped into a new batch
  *  and get a `scheduledDate` computed from its release cadence, in the same
  *  order they appear in the CSV. */
-export function importPlanEntries(
+export async function importPlanEntries(
   rows: { rowNumber: number; input: Partial<PlanInput> }[],
   batchInput?: ImportBatchInput
-): ImportResult {
-  const entries = listPlan();
+): Promise<ImportResult> {
+  const entries = await listPlan();
   const seenTitles = new Set(entries.map((e) => e.title.toLowerCase()));
   const skipped: ImportRowResult[] = [];
   const added: PlanEntry[] = [];
@@ -302,12 +292,12 @@ export function importPlanEntries(
       e.scheduledDate = schedule[i].date;
       if (schedule[i].time) e.scheduledTime = schedule[i].time;
     });
-    const batches = listBatches();
+    const batches = await listBatches();
     batches.push(batch);
-    writeBatches(batches);
+    await writeBatches(batches);
   }
 
-  if (added.length > 0) writePlan([...entries, ...added]);
+  if (added.length > 0) await writePlan([...entries, ...added]);
   return { added: added.length, skipped, batch };
 }
 
@@ -317,11 +307,11 @@ export function importPlanEntries(
  *  batch for grouping/reporting, keeping their real publish date on the
  *  post itself rather than getting an overwritten one. Order follows the
  *  entries' existing order in the plan. */
-export function groupExistingEntries(
+export async function groupExistingEntries(
   entryIds: string[],
   batchInput: ImportBatchInput
-): Batch {
-  const entries = listPlan();
+): Promise<Batch> {
+  const entries = await listPlan();
   const idSet = new Set(entryIds);
   const targeted = entries.filter((e) => idSet.has(e.id));
   if (targeted.length === 0) throw new Error("No matching plan entries");
@@ -353,9 +343,9 @@ export function groupExistingEntries(
     }
   }
 
-  const batches = listBatches();
+  const batches = await listBatches();
   batches.push(batch);
-  writeBatches(batches);
-  writePlan(entries);
+  await writeBatches(batches);
+  await writePlan(entries);
   return batch;
 }

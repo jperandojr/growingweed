@@ -9,8 +9,8 @@ import { blogPostSchema, breadcrumbSchema } from "@/lib/schema";
 // (or one written directly on the live site) appears without a redeploy.
 export const revalidate = 1800;
 
-export function generateStaticParams() {
-  return getAllPosts().map((p) => ({ slug: p.slug }));
+export async function generateStaticParams() {
+  return (await getAllPosts()).map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({
@@ -19,7 +19,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
   if (!post) return {};
   return {
     title: post.metaTitle?.trim() || `${post.title} | GrowingWeed Grow Guides`,
@@ -35,7 +35,7 @@ export default async function BlogPostPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
   if (!post) notFound();
 
   return (

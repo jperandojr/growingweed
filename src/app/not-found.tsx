@@ -22,8 +22,8 @@ const quickLinks = [
   { label: "Full Sitemap", href: "/sitemap" },
 ];
 
-export default function NotFound() {
-  const recentGuides = getAllPosts().slice(0, 3);
+export default async function NotFound() {
+  const recentGuides = (await getAllPosts()).slice(0, 3);
 
   return (
     <div className="mx-auto max-w-3xl px-6 py-20 text-center">

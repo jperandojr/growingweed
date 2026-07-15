@@ -1,12 +1,12 @@
-import fs from "node:fs";
-import path from "node:path";
 import { BlogPost } from "./types";
+import { readJson, writeJson, deleteJson, existsJson, listJsonPathnames } from "./blob-json";
 
-// File-backed post storage for the admin dashboard. Editable posts live as
-// JSON in content/articles/; the founding posts in src/data/blog.ts are
-// read-only from the dashboard's perspective.
+// Blob-backed post storage for the admin dashboard. Editable posts live as
+// JSON blobs under content/articles/; the founding posts in src/data/blog.ts
+// are read-only from the dashboard's perspective. Backed by Vercel Blob (not
+// the local filesystem) so writes persist on Vercel's serverless runtime.
 
-const ARTICLES_DIR = path.join(process.cwd(), "content", "articles");
+const ARTICLES_PREFIX = "content/articles/";
 
 export function slugify(title: string): string {
   return title
@@ -51,26 +51,22 @@ export function validatePost(input: Partial<PostInput>): string | null {
   return null;
 }
 
-export function listEditablePosts(): BlogPost[] {
-  try {
-    return fs
-      .readdirSync(ARTICLES_DIR)
-      .filter((f) => f.endsWith(".json"))
-      .map((f) => {
-        const raw = JSON.parse(fs.readFileSync(path.join(ARTICLES_DIR, f), "utf8"));
-        return { id: raw.slug, ...raw } as BlogPost;
-      })
-      .sort((a, b) => (a.date < b.date ? 1 : -1));
-  } catch {
-    return [];
-  }
+export async function listEditablePosts(): Promise<BlogPost[]> {
+  const pathnames = await listJsonPathnames(ARTICLES_PREFIX);
+  const posts = await Promise.all(
+    pathnames
+      .filter((p) => p.endsWith(".json"))
+      .map((p) => readJson<Omit<BlogPost, "id"> | null>(p, null))
+  );
+  return posts
+    .filter((raw): raw is Omit<BlogPost, "id"> => raw !== null)
+    .map((raw) => ({ id: raw.slug, ...raw }) as BlogPost)
+    .sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
-export function getEditablePost(slug: string): BlogPost | null {
-  const file = path.join(ARTICLES_DIR, `${slug}.json`);
-  if (!fs.existsSync(file)) return null;
-  const raw = JSON.parse(fs.readFileSync(file, "utf8"));
-  return { id: raw.slug, ...raw } as BlogPost;
+export async function getEditablePost(slug: string): Promise<BlogPost | null> {
+  const raw = await readJson<Omit<BlogPost, "id"> | null>(`${ARTICLES_PREFIX}${slug}.json`, null);
+  return raw ? ({ id: raw.slug, ...raw } as BlogPost) : null;
 }
 
 // Articles live at root-level URLs, so slugs must not collide with pages.
@@ -80,14 +76,17 @@ const RESERVED_SLUGS = new Set([
   "sitemaps", "strains", "terms",
 ]);
 
-export function savePost(input: PostInput, { isNew }: { isNew: boolean }): { slug: string } {
-  fs.mkdirSync(ARTICLES_DIR, { recursive: true });
+export async function savePost(
+  input: PostInput,
+  { isNew }: { isNew: boolean }
+): Promise<{ slug: string }> {
   const slug = input.slug?.trim() || slugify(input.title);
   if (!slug) throw new Error("Could not derive a slug from the title");
   if (RESERVED_SLUGS.has(slug))
     throw new Error(`"${slug}" is a reserved URL — pick a different slug`);
-  const file = path.join(ARTICLES_DIR, `${slug}.json`);
-  if (isNew && fs.existsSync(file)) throw new Error(`A post with slug "${slug}" already exists`);
+  const pathname = `${ARTICLES_PREFIX}${slug}.json`;
+  if (isNew && (await existsJson(pathname)))
+    throw new Error(`A post with slug "${slug}" already exists`);
 
   const record = {
     slug,
@@ -103,13 +102,13 @@ export function savePost(input: PostInput, { isNew }: { isNew: boolean }): { slu
     ...(input.image?.trim() ? { image: input.image.trim() } : {}),
     ...(input.metaTitle?.trim() ? { metaTitle: input.metaTitle.trim() } : {}),
   };
-  fs.writeFileSync(file, JSON.stringify(record, null, 2));
+  await writeJson(pathname, record);
   return { slug };
 }
 
-export function deletePost(slug: string): boolean {
-  const file = path.join(ARTICLES_DIR, `${slug}.json`);
-  if (!fs.existsSync(file)) return false;
-  fs.unlinkSync(file);
+export async function deletePost(slug: string): Promise<boolean> {
+  const pathname = `${ARTICLES_PREFIX}${slug}.json`;
+  if (!(await existsJson(pathname))) return false;
+  await deleteJson(pathname);
   return true;
 }

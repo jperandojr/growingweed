@@ -25,8 +25,8 @@ const features = [
   },
 ];
 
-export default function CommunityPage() {
-  const blogPosts = getAllPosts();
+export default async function CommunityPage() {
+  const blogPosts = await getAllPosts();
   return (
     <div className="mx-auto max-w-7xl px-6 py-10">
       <h1 className="mb-2 text-2xl font-bold text-neutral-900 sm:text-3xl">Community</h1>

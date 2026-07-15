@@ -4,10 +4,10 @@ import { markPlanPublished } from "@/lib/article-plan";
 import { getAllPosts, isPublishedNow } from "@/data/blog";
 import { submitToIndexNow } from "@/lib/indexnow";
 
-export function GET() {
-  const editable = listEditablePosts();
+export async function GET() {
+  const editable = await listEditablePosts();
   const editableSlugs = new Set(editable.map((p) => p.slug));
-  const builtIn = getAllPosts().filter((p) => !editableSlugs.has(p.slug));
+  const builtIn = (await getAllPosts()).filter((p) => !editableSlugs.has(p.slug));
   return NextResponse.json({ editable, builtIn });
 }
 
@@ -17,8 +17,8 @@ export async function POST(req: NextRequest) {
   const error = validatePost(body);
   if (error) return NextResponse.json({ error }, { status: 400 });
   try {
-    const { slug } = savePost(body, { isNew: true });
-    if (body.planId) markPlanPublished(body.planId, slug);
+    const { slug } = await savePost(body, { isNew: true });
+    if (body.planId) await markPlanPublished(body.planId, slug);
     // Only ping IndexNow for content that's actually live now — a
     // scheduled/future-dated post isn't reachable yet, so submitting it
     // early would just point search engines at a 404.

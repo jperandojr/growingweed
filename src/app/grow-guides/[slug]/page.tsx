@@ -10,6 +10,6 @@ export default async function LegacyGuideRedirect({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  if (!getPostBySlug(slug)) notFound();
+  if (!(await getPostBySlug(slug))) notFound();
   permanentRedirect(`/${slug}`);
 }

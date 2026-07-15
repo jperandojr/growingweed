@@ -19,10 +19,10 @@ export const revalidate = 1800;
 // reflect the step-by-step curriculum order the plan was authored in, not
 // publish date. Posts with no matching plan entry (freeform posts) are
 // skipped here; they still show in the main grid above.
-function groupByChapter(posts: BlogPost[]) {
+async function groupByChapter(posts: BlogPost[]) {
   const postBySlug = new Map(posts.map((p) => [p.slug, p]));
   const chapters = new Map<string, BlogPost[]>();
-  for (const entry of listPlan()) {
+  for (const entry of await listPlan()) {
     if (entry.status !== "published" || !entry.slug) continue;
     const post = postBySlug.get(entry.slug);
     if (!post) continue; // date-gated (not live yet) or removed
@@ -32,9 +32,9 @@ function groupByChapter(posts: BlogPost[]) {
   return chapters;
 }
 
-export default function GrowGuidesPage() {
-  const blogPosts = getAllPosts();
-  const chapterGroups = groupByChapter(blogPosts);
+export default async function GrowGuidesPage() {
+  const blogPosts = await getAllPosts();
+  const chapterGroups = await groupByChapter(blogPosts);
 
   return (
     <div className="mx-auto max-w-7xl px-6 py-10">
