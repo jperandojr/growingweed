@@ -56,7 +56,13 @@ function normalizeDifficulty(v: string): PlanDifficulty | undefined {
 export async function POST(req: NextRequest) {
   const { csv, batch } = (await req.json().catch(() => ({}))) as {
     csv?: string;
-    batch?: { name?: string; startDate?: string; cadenceCount?: number; cadencePer?: CadencePer };
+    batch?: {
+      name?: string;
+      startDate?: string;
+      cadenceCount?: number;
+      cadencePer?: CadencePer;
+      times?: string[];
+    };
   };
   if (!csv?.trim()) {
     return NextResponse.json({ error: "No CSV content provided" }, { status: 400 });
@@ -68,15 +74,19 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Batch name is required" }, { status: 400 });
     if (!batch.startDate || !/^\d{4}-\d{2}-\d{2}$/.test(batch.startDate))
       return NextResponse.json({ error: "Batch start date must be YYYY-MM-DD" }, { status: 400 });
-    if (!batch.cadenceCount || batch.cadenceCount < 1)
-      return NextResponse.json({ error: "Cadence count must be at least 1" }, { status: 400 });
     if (batch.cadencePer !== "day" && batch.cadencePer !== "week")
       return NextResponse.json({ error: "Cadence period must be 'day' or 'week'" }, { status: 400 });
+    const times = batch.cadencePer === "day" ? batch.times?.filter(Boolean) : undefined;
+    if (times && times.some((t) => !/^\d{2}:\d{2}$/.test(t)))
+      return NextResponse.json({ error: "Publish times must be HH:MM" }, { status: 400 });
+    if (!times?.length && (!batch.cadenceCount || batch.cadenceCount < 1))
+      return NextResponse.json({ error: "Cadence count must be at least 1" }, { status: 400 });
     batchInput = {
       name: batch.name,
       startDate: batch.startDate,
-      cadenceCount: batch.cadenceCount,
+      cadenceCount: batch.cadenceCount ?? 1,
       cadencePer: batch.cadencePer,
+      ...(times?.length ? { times } : {}),
     };
   }
 

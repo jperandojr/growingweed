@@ -28,6 +28,7 @@ export type PostInput = {
   excerpt: string;
   category: string;
   date: string;
+  publishTime?: string; // HH:MM, 24-hour, UTC
   hue: number;
   content: string;
   keyword?: string;
@@ -43,6 +44,8 @@ export function validatePost(input: Partial<PostInput>): string | null {
     return "Content is required (at least 100 characters)";
   if (!input.date || !/^\d{4}-\d{2}-\d{2}$/.test(input.date))
     return "Date must be YYYY-MM-DD";
+  if (input.publishTime && !/^\d{2}:\d{2}$/.test(input.publishTime))
+    return "Publish time must be HH:MM";
   if (typeof input.hue !== "number" || input.hue < 0 || input.hue > 359)
     return "Hue must be 0-359";
   return null;
@@ -93,6 +96,7 @@ export function savePost(input: PostInput, { isNew }: { isNew: boolean }): { slu
     category: input.category.trim(),
     readTime: readTimeFor(input.content),
     date: input.date,
+    ...(input.publishTime ? { publishTime: input.publishTime } : {}),
     hue: input.hue,
     content: input.content.trim(),
     ...(input.keyword?.trim() ? { keyword: input.keyword.trim() } : {}),

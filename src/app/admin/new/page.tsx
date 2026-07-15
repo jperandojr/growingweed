@@ -20,6 +20,7 @@ export default async function NewPostPage({
         keyword: entry.keyword,
         permalink: entry.permalink,
         scheduledDate: entry.scheduledDate,
+        scheduledTime: entry.scheduledTime,
       }
     : undefined;
   return (

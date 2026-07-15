@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { Plus, Pencil, Trash2, PenLine, ExternalLink, Upload, FileDown, Layers } from "lucide-react";
+import { Plus, Pencil, Trash2, PenLine, ExternalLink, Upload, FileDown, Layers, X } from "lucide-react";
 
 type PlanEntry = {
   id: string;
@@ -17,6 +17,7 @@ type PlanEntry = {
   slug?: string;
   batchId?: string;
   scheduledDate?: string;
+  scheduledTime?: string;
 };
 
 type Batch = {
@@ -26,9 +27,10 @@ type Batch = {
   startDate: string;
   cadenceCount: number;
   cadencePer: "day" | "week";
+  times?: string[];
 };
 
-type PostSummary = { slug: string; date: string };
+type PostSummary = { slug: string; date: string; publishTime?: string };
 
 const difficulties = ["Beginner", "Intermediate", "Advanced"] as const;
 
@@ -60,8 +62,93 @@ function formatDate(d: string) {
   });
 }
 
+function formatDateTime(date: string, time?: string) {
+  return new Date(`${date}T${time ?? "00:00"}:00Z`).toLocaleString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    ...(time ? { hour: "numeric", minute: "2-digit" } : {}),
+  });
+}
+
+// UTC HH:MM -> local 12-hour display, e.g. "6:00 AM". Reference date only
+// matters for the (unlikely) case a time's UTC conversion crossed midnight.
+function utcTimeToLocal(referenceDate: string, utcTime: string) {
+  return new Date(`${referenceDate}T${utcTime}:00Z`).toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+  });
+}
+
+// Local HH:MM (typed by the admin) -> UTC HH:MM, using referenceDate to
+// resolve the correct UTC offset (DST etc). A schedule spanning a DST
+// change keeps this fixed offset, so the local wall-clock time can drift by
+// an hour across that boundary — a known simplification without a full
+// timezone library.
+function localTimeToUtc(referenceDate: string, localTime: string) {
+  return new Date(`${referenceDate}T${localTime}:00`).toISOString().slice(11, 16);
+}
+
 function cadenceLabel(b: Batch) {
+  if (b.times && b.times.length > 0) {
+    const times = b.times.map((t) => utcTimeToLocal(b.startDate, t)).join(", ");
+    return `${b.times.length}/day (${times}) from ${formatDate(b.startDate)}`;
+  }
   return `${b.cadenceCount}/${b.cadencePer} from ${formatDate(b.startDate)}`;
+}
+
+function TimesInput({
+  times,
+  setTimes,
+  label: fieldLabel,
+  inputClass,
+}: {
+  times: string[];
+  setTimes: (t: string[]) => void;
+  label: string;
+  inputClass: string;
+}) {
+  return (
+    <div className="sm:col-span-2 xl:col-span-4">
+      <label className={fieldLabel}>Publish times per day (your local time)</label>
+      <div className="mt-1.5 flex flex-wrap items-center gap-2">
+        {times.map((t, i) => (
+          <div key={i} className="flex items-center gap-1">
+            <input
+              type="time"
+              value={t}
+              onChange={(e) => {
+                const next = [...times];
+                next[i] = e.target.value;
+                setTimes(next);
+              }}
+              className={`${inputClass} mt-0 w-auto`}
+            />
+            {times.length > 1 && (
+              <button
+                type="button"
+                onClick={() => setTimes(times.filter((_, j) => j !== i))}
+                className="text-neutral-300 hover:text-red-600"
+              >
+                <X size={14} />
+              </button>
+            )}
+          </div>
+        ))}
+        <button
+          type="button"
+          onClick={() => setTimes([...times, "12:00"])}
+          className="rounded-lg border border-dashed border-neutral-300 px-3 py-2 text-xs font-medium text-neutral-500 hover:border-emerald-400 hover:text-emerald-700"
+        >
+          + Add time
+        </button>
+      </div>
+      <p className="mt-1.5 text-xs text-neutral-400">
+        Each day's cohort is spread across these times instead of publishing all at once. Cadence
+        is set automatically to {times.filter(Boolean).length} per day.
+      </p>
+    </div>
+  );
 }
 
 export default function ContentPlanPage() {
@@ -85,11 +172,15 @@ export default function ContentPlanPage() {
   const [batchStartDate, setBatchStartDate] = useState(todayStr);
   const [batchCadenceCount, setBatchCadenceCount] = useState(3);
   const [batchCadencePer, setBatchCadencePer] = useState<"day" | "week">("week");
+  const [batchTimes, setBatchTimes] = useState<string[]>(["06:00", "09:00", "12:00"]);
+  const [batchUseTimes, setBatchUseTimes] = useState(false);
 
   const [groupName, setGroupName] = useState("");
   const [groupStartDate, setGroupStartDate] = useState(todayStr);
   const [groupCadenceCount, setGroupCadenceCount] = useState(3);
   const [groupCadencePer, setGroupCadencePer] = useState<"day" | "week">("week");
+  const [groupTimes, setGroupTimes] = useState<string[]>(["06:00", "09:00", "12:00"]);
+  const [groupUseTimes, setGroupUseTimes] = useState(false);
   const [groupBusy, setGroupBusy] = useState(false);
   const [groupError, setGroupError] = useState("");
 
@@ -173,11 +264,19 @@ export default function ContentPlanPage() {
     const csv = await file.text();
     const body: Record<string, unknown> = { csv };
     if (batchName.trim()) {
+      const useTimes = batchUseTimes && batchCadencePer === "day";
       body.batch = {
         name: batchName.trim(),
         startDate: batchStartDate,
         cadenceCount: batchCadenceCount,
         cadencePer: batchCadencePer,
+        ...(useTimes
+          ? {
+              times: batchTimes
+                .filter(Boolean)
+                .map((t) => localTimeToUtc(batchStartDate, t)),
+            }
+          : {}),
       };
     }
     const res = await fetch("/api/admin/plan/import", {
@@ -202,6 +301,7 @@ export default function ContentPlanPage() {
     }
     setGroupBusy(true);
     setGroupError("");
+    const useTimes = groupUseTimes && groupCadencePer === "day";
     const res = await fetch("/api/admin/plan/batches", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -210,6 +310,9 @@ export default function ContentPlanPage() {
         startDate: groupStartDate,
         cadenceCount: groupCadenceCount,
         cadencePer: groupCadencePer,
+        ...(useTimes
+          ? { times: groupTimes.filter(Boolean).map((t) => localTimeToUtc(groupStartDate, t)) }
+          : {}),
         entryIds,
       }),
     });
@@ -247,15 +350,20 @@ export default function ContentPlanPage() {
     if (e.status === "planned") {
       return (
         <span className="rounded-full bg-neutral-100 px-2.5 py-0.5 text-[11px] font-medium text-neutral-500">
-          {e.scheduledDate ? `Scheduled to write — ${formatDate(e.scheduledDate)}` : "Planned"}
+          {e.scheduledDate
+            ? `Scheduled to write — ${formatDateTime(e.scheduledDate, e.scheduledTime)}`
+            : "Planned"}
         </span>
       );
     }
     const post = e.slug ? posts.get(e.slug) : undefined;
-    if (post && post.date > todayStr) {
+    const publishAt = post
+      ? new Date(`${post.date}T${post.publishTime ?? "00:00"}:00Z`).getTime()
+      : 0;
+    if (post && publishAt > Date.now()) {
       return (
         <span className="rounded-full bg-amber-50 px-2.5 py-0.5 text-[11px] font-medium text-amber-700">
-          Scheduled for {formatDate(post.date)}
+          Scheduled for {formatDateTime(post.date, post.publishTime)}
         </span>
       );
     }
@@ -320,9 +428,18 @@ export default function ContentPlanPage() {
             </Link>
           )}
           {e.status === "planned" && (
-            <button onClick={() => startEdit(e)} title="Edit" className="hover:text-emerald-700">
+            <button onClick={() => startEdit(e)} title="Edit plan entry" className="hover:text-emerald-700">
               <Pencil size={15} />
             </button>
+          )}
+          {e.status === "published" && e.slug && (
+            <Link
+              href={`/admin/edit/${e.slug}`}
+              title="Edit published post"
+              className="hover:text-emerald-700"
+            >
+              <Pencil size={15} />
+            </Link>
           )}
           <button onClick={() => remove(e)} title="Delete" className="hover:text-red-600">
             <Trash2 size={15} />
@@ -444,8 +561,9 @@ export default function ContentPlanPage() {
                 min={1}
                 max={50}
                 value={batchCadenceCount}
+                disabled={batchUseTimes && batchCadencePer === "day"}
                 onChange={(e) => setBatchCadenceCount(parseInt(e.target.value, 10) || 1)}
-                className={input}
+                className={`${input} disabled:bg-neutral-100 disabled:text-neutral-400`}
               />
             </div>
             <div>
@@ -460,6 +578,22 @@ export default function ContentPlanPage() {
               </select>
             </div>
           </div>
+          {batchCadencePer === "day" && (
+            <div className="sm:col-span-2 xl:col-span-4">
+              <label className="flex items-center gap-2 text-xs font-medium text-neutral-600">
+                <input
+                  type="checkbox"
+                  checked={batchUseTimes}
+                  onChange={(e) => setBatchUseTimes(e.target.checked)}
+                  className="accent-emerald-600"
+                />
+                Stagger publishing at specific times instead of all at once
+              </label>
+            </div>
+          )}
+          {batchCadencePer === "day" && batchUseTimes && (
+            <TimesInput times={batchTimes} setTimes={setBatchTimes} label={label} inputClass={input} />
+          )}
         </div>
       </div>
 
@@ -689,8 +823,9 @@ export default function ContentPlanPage() {
                     min={1}
                     max={50}
                     value={groupCadenceCount}
+                    disabled={groupUseTimes && groupCadencePer === "day"}
                     onChange={(e) => setGroupCadenceCount(parseInt(e.target.value, 10) || 1)}
-                    className={input}
+                    className={`${input} disabled:bg-neutral-100 disabled:text-neutral-400`}
                   />
                 </div>
                 <div>
@@ -705,6 +840,22 @@ export default function ContentPlanPage() {
                   </select>
                 </div>
               </div>
+              {groupCadencePer === "day" && (
+                <div className="sm:col-span-2 xl:col-span-4">
+                  <label className="flex items-center gap-2 text-xs font-medium text-neutral-600">
+                    <input
+                      type="checkbox"
+                      checked={groupUseTimes}
+                      onChange={(e) => setGroupUseTimes(e.target.checked)}
+                      className="accent-emerald-600"
+                    />
+                    Stagger publishing at specific times instead of all at once
+                  </label>
+                </div>
+              )}
+              {groupCadencePer === "day" && groupUseTimes && (
+                <TimesInput times={groupTimes} setTimes={setGroupTimes} label={label} inputClass={input} />
+              )}
             </div>
             {groupError && <p className="mt-3 text-sm text-red-600">{groupError}</p>}
             <button

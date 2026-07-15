@@ -1,10 +1,15 @@
 [
   {
-    "id": "f0b2c026",
+    "id": "3bf43b98",
     "name": "Full Content Plan",
-    "createdAt": "2026-07-14T23:16:42.203Z",
+    "createdAt": "2026-07-15T00:52:23.790Z",
     "startDate": "2026-07-15",
     "cadenceCount": 3,
-    "cadencePer": "day"
+    "cadencePer": "day",
+    "times": [
+      "13:00",
+      "16:00",
+      "19:00"
+    ]
   }
 ]

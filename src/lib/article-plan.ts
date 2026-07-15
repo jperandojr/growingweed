@@ -32,6 +32,7 @@ export type PlanEntry = {
   slug?: string; // set when published
   batchId?: string; // set when imported as part of a scheduled bulk upload
   scheduledDate?: string; // YYYY-MM-DD, computed from the batch's cadence
+  scheduledTime?: string; // HH:MM UTC, computed from the batch's daily times
 };
 
 export function listPlan(): PlanEntry[] {
@@ -56,6 +57,9 @@ export type Batch = {
   startDate: string; // YYYY-MM-DD — first entry's scheduled date
   cadenceCount: number; // e.g. 3
   cadencePer: CadencePer; // "week" -> "3 per week"
+  times?: string[]; // HH:MM UTC — when set (cadencePer "day" only), each
+  // day's cohort is spread across these clock times instead of all landing
+  // at 00:00 UTC together; cadenceCount is forced to times.length
 };
 
 export function listBatches(): Batch[] {
@@ -93,6 +97,36 @@ export function computeScheduleDates(
   return dates;
 }
 
+export type ScheduleEntry = { date: string; time?: string };
+
+/** Like computeScheduleDates, but when `times` is given (daily cadence
+ *  only), each day's cohort is spread across those clock times in order
+ *  instead of all landing at the same instant — e.g. times ["06:00",
+ *  "09:00", "12:00"] gives 3 slots/day, cycling through the list. Falls
+ *  back to computeScheduleDates (no time-of-day) when times is omitted. */
+export function computeSchedule(
+  startDate: string,
+  cadencePer: CadencePer,
+  count: number,
+  opts: { cadenceCount: number; times?: string[] }
+): ScheduleEntry[] {
+  const times = opts.times?.filter(Boolean);
+  if (cadencePer === "day" && times && times.length > 0) {
+    const start = new Date(`${startDate}T00:00:00Z`);
+    const out: ScheduleEntry[] = [];
+    for (let i = 0; i < count; i++) {
+      const dayOffset = Math.floor(i / times.length);
+      const d = new Date(start);
+      d.setUTCDate(d.getUTCDate() + dayOffset);
+      out.push({ date: d.toISOString().slice(0, 10), time: times[i % times.length] });
+    }
+    return out;
+  }
+  return computeScheduleDates(startDate, opts.cadenceCount, cadencePer, count).map((date) => ({
+    date,
+  }));
+}
+
 export function deleteBatch(id: string): boolean {
   const batches = listBatches();
   const next = batches.filter((b) => b.id !== id);
@@ -105,6 +139,7 @@ export function deleteBatch(id: string): boolean {
     if (e.batchId === id) {
       delete e.batchId;
       delete e.scheduledDate;
+      delete e.scheduledTime;
       touched = true;
     }
   }
@@ -209,6 +244,7 @@ export type ImportBatchInput = {
   startDate: string; // YYYY-MM-DD
   cadenceCount: number;
   cadencePer: CadencePer;
+  times?: string[]; // HH:MM UTC, daily cadence only — see Batch.times
 };
 
 /** Bulk-add entries (from CSV import). Skips invalid rows and duplicate
@@ -246,23 +282,25 @@ export function importPlanEntries(
 
   let batch: Batch | undefined;
   if (added.length > 0 && batchInput) {
+    const times =
+      batchInput.cadencePer === "day" ? batchInput.times?.filter(Boolean) : undefined;
     batch = {
       id: crypto.randomUUID().slice(0, 8),
       name: batchInput.name.trim(),
       createdAt: new Date().toISOString(),
       startDate: batchInput.startDate,
-      cadenceCount: batchInput.cadenceCount,
+      cadenceCount: times && times.length > 0 ? times.length : batchInput.cadenceCount,
       cadencePer: batchInput.cadencePer,
+      ...(times && times.length > 0 ? { times } : {}),
     };
-    const dates = computeScheduleDates(
-      batch.startDate,
-      batch.cadenceCount,
-      batch.cadencePer,
-      added.length
-    );
+    const schedule = computeSchedule(batch.startDate, batch.cadencePer, added.length, {
+      cadenceCount: batch.cadenceCount,
+      times: batch.times,
+    });
     added.forEach((e, i) => {
       e.batchId = batch!.id;
-      e.scheduledDate = dates[i];
+      e.scheduledDate = schedule[i].date;
+      if (schedule[i].time) e.scheduledTime = schedule[i].time;
     });
     const batches = listBatches();
     batches.push(batch);
@@ -288,27 +326,31 @@ export function groupExistingEntries(
   const targeted = entries.filter((e) => idSet.has(e.id));
   if (targeted.length === 0) throw new Error("No matching plan entries");
 
+  const times = batchInput.cadencePer === "day" ? batchInput.times?.filter(Boolean) : undefined;
   const batch: Batch = {
     id: crypto.randomUUID().slice(0, 8),
     name: batchInput.name.trim(),
     createdAt: new Date().toISOString(),
     startDate: batchInput.startDate,
-    cadenceCount: batchInput.cadenceCount,
+    cadenceCount: times && times.length > 0 ? times.length : batchInput.cadenceCount,
     cadencePer: batchInput.cadencePer,
+    ...(times && times.length > 0 ? { times } : {}),
   };
 
   const plannedCount = targeted.filter((e) => e.status === "planned").length;
-  const dates = computeScheduleDates(
-    batch.startDate,
-    batch.cadenceCount,
-    batch.cadencePer,
-    plannedCount
-  );
+  const schedule = computeSchedule(batch.startDate, batch.cadencePer, plannedCount, {
+    cadenceCount: batch.cadenceCount,
+    times: batch.times,
+  });
   let di = 0;
   for (const e of entries) {
     if (!idSet.has(e.id)) continue;
     e.batchId = batch.id;
-    if (e.status === "planned") e.scheduledDate = dates[di++];
+    if (e.status === "planned") {
+      e.scheduledDate = schedule[di].date;
+      if (schedule[di].time) e.scheduledTime = schedule[di].time;
+      di++;
+    }
   }
 
   const batches = listBatches();

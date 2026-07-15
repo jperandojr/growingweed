@@ -23,6 +23,33 @@ function slugify(title: string) {
     .replace(/^-+|-+$/g, "");
 }
 
+const pad = (n: number) => String(n).padStart(2, "0");
+
+function todayLocal() {
+  const d = new Date();
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+}
+
+/** Server stores date/publishTime in UTC. Converts to the browser's local
+ *  calendar date + clock time for display/editing, so the admin always
+ *  reasons in their own timezone. No-op when time is absent (date-only
+ *  posts have no timezone-sensitive component). */
+function utcToLocal(date: string, time?: string): { date: string; time: string } {
+  if (!time) return { date, time: "" };
+  const d = new Date(`${date}T${time}:00Z`);
+  return {
+    date: `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`,
+    time: `${pad(d.getHours())}:${pad(d.getMinutes())}`,
+  };
+}
+
+/** Inverse of utcToLocal — converts the admin's local date+time back to UTC
+ *  before it's sent to the server, which is timezone-agnostic. */
+function localToUtc(date: string, time: string): { date: string; time: string } {
+  const d = new Date(`${date}T${time}:00`);
+  return { date: d.toISOString().slice(0, 10), time: d.toISOString().slice(11, 16) };
+}
+
 export type PlanBrief = {
   planId: string;
   title: string;
@@ -33,6 +60,7 @@ export type PlanBrief = {
   keyword?: string;
   permalink?: string;
   scheduledDate?: string;
+  scheduledTime?: string;
 };
 
 export function PostForm({ post, brief }: { post?: BlogPost; brief?: PlanBrief }) {
@@ -42,11 +70,15 @@ export function PostForm({ post, brief }: { post?: BlogPost; brief?: PlanBrief }
   const [slug, setSlug] = useState(post?.slug ?? brief?.permalink ?? (brief ? slugify(brief.title) : ""));
   const [slugTouched, setSlugTouched] = useState(!isNew);
   const [category, setCategory] = useState(post?.category ?? brief?.category ?? categories[0]);
-  const [date, setDate] = useState(
-    post?.date ?? brief?.scheduledDate ?? new Date().toISOString().slice(0, 10)
-  );
-  const today = new Date().toISOString().slice(0, 10);
-  const isScheduled = date > today;
+  const initialLocal = post
+    ? utcToLocal(post.date, post.publishTime)
+    : brief?.scheduledDate
+      ? utcToLocal(brief.scheduledDate, brief.scheduledTime)
+      : { date: todayLocal(), time: "" };
+  const [date, setDate] = useState(initialLocal.date);
+  const [publishTime, setPublishTime] = useState(initialLocal.time);
+  const previewUtc = localToUtc(date, publishTime || "00:00");
+  const isScheduled = new Date(`${previewUtc.date}T${previewUtc.time}:00Z`).getTime() > Date.now();
   const [hue, setHue] = useState(post?.hue ?? 140);
   const [hueTouched, setHueTouched] = useState(!isNew);
   const [excerpt, setExcerpt] = useState(post?.excerpt ?? "");
@@ -81,9 +113,11 @@ export function PostForm({ post, brief }: { post?: BlogPost; brief?: PlanBrief }
     e.preventDefault();
     setBusy(true);
     setError("");
+    const utc = publishTime ? localToUtc(date, publishTime) : { date, time: undefined };
     const body = {
       slug: slug || slugify(title),
-      title, excerpt, category, date, hue, content,
+      title, excerpt, category, date: utc.date, hue, content,
+      ...(utc.time ? { publishTime: utc.time } : {}),
       image: image.trim(),
       keyword: keyword.trim(),
       metaTitle: metaTitle.trim(),
@@ -131,11 +165,15 @@ export function PostForm({ post, brief }: { post?: BlogPost; brief?: PlanBrief }
               <>
                 {" · scheduled for "}
                 <span className="font-semibold text-emerald-700">
-                  {new Date(`${brief.scheduledDate}T00:00:00Z`).toLocaleDateString("en-US", {
+                  {new Date(
+                    `${brief.scheduledDate}T${brief.scheduledTime ?? "00:00"}:00Z`
+                  ).toLocaleString("en-US", {
                     month: "long",
                     day: "numeric",
                     year: "numeric",
+                    ...(brief.scheduledTime ? { hour: "numeric", minute: "2-digit" } : {}),
                   })}
+                  {" your local time"}
                 </span>
               </>
             )}
@@ -187,30 +225,41 @@ export function PostForm({ post, brief }: { post?: BlogPost; brief?: PlanBrief }
         <div>
           <label className={label}>Publish date</label>
           <input type="date" value={date} onChange={(e) => setDate(e.target.value)} className={input} />
-          <p className="mt-1.5 text-xs text-neutral-400">
-            {isScheduled
-              ? "In the future — this post is saved now but stays hidden from the site until this date, then goes live automatically."
-              : "Today or earlier — visible on the site immediately after saving."}
-          </p>
         </div>
         <div>
-          <label className={label}>Cover hue ({hue})</label>
-          <div className="mt-1.5 flex items-center gap-3">
-            <input
-              type="range"
-              min={0}
-              max={359}
-              value={hue}
-              onChange={(e) => { setHueTouched(true); setHue(parseInt(e.target.value, 10)); }}
-              className="w-full accent-emerald-600"
-            />
-            <span
-              className="h-9 w-14 shrink-0 rounded-lg"
-              style={{
-                backgroundImage: `radial-gradient(circle at 30% 20%, hsl(${(hue + 40) % 360} 55% 28%), hsl(${hue} 45% 16%) 70%)`,
-              }}
-            />
-          </div>
+          <label className={label}>Publish time (optional, your local time)</label>
+          <input
+            type="time"
+            value={publishTime}
+            onChange={(e) => setPublishTime(e.target.value)}
+            className={input}
+          />
+        </div>
+      </div>
+      <p className="-mt-3 text-xs text-neutral-400">
+        {isScheduled
+          ? "In the future — this post is saved now but stays hidden from the site until this exact moment, then goes live automatically."
+          : "Now or earlier — visible on the site immediately after saving."}
+        {" "}Leave the time blank to publish at the very start of the date (UTC).
+      </p>
+
+      <div>
+        <label className={label}>Cover hue ({hue})</label>
+        <div className="mt-1.5 flex items-center gap-3">
+          <input
+            type="range"
+            min={0}
+            max={359}
+            value={hue}
+            onChange={(e) => { setHueTouched(true); setHue(parseInt(e.target.value, 10)); }}
+            className="w-full max-w-xs accent-emerald-600"
+          />
+          <span
+            className="h-9 w-14 shrink-0 rounded-lg"
+            style={{
+              backgroundImage: `radial-gradient(circle at 30% 20%, hsl(${(hue + 40) % 360} 55% 28%), hsl(${hue} 45% 16%) 70%)`,
+            }}
+          />
         </div>
       </div>
 

@@ -62,6 +62,11 @@ export type BlogPost = {
   category: string;
   readTime: string;
   date: string;
+  /** HH:MM, 24-hour, UTC. Paired with `date` to gate visibility to the
+   *  minute — see getAllPosts() in src/data/blog.ts. Omitted means visible
+   *  as soon as `date` arrives (UTC start of day), same as before this
+   *  field existed. */
+  publishTime?: string;
   hue: number;
   /** Full article body: paragraphs separated by blank lines; "## " for
    *  headings; [label](/path) for internal links. */
