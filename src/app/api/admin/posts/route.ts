@@ -3,6 +3,7 @@ import { listEditablePosts, savePost, validatePost, PostInput } from "@/lib/admi
 import { markPlanPublished } from "@/lib/article-plan";
 import { getAllPosts, isPublishedNow } from "@/data/blog";
 import { submitToIndexNow } from "@/lib/indexnow";
+import { revalidatePostPages } from "@/lib/revalidate-posts";
 
 export async function GET() {
   const editable = await listEditablePosts();
@@ -19,6 +20,7 @@ export async function POST(req: NextRequest) {
   try {
     const { slug } = await savePost(body, { isNew: true });
     if (body.planId) await markPlanPublished(body.planId, slug);
+    revalidatePostPages(slug);
     // Only ping IndexNow for content that's actually live now — a
     // scheduled/future-dated post isn't reachable yet, so submitting it
     // early would just point search engines at a 404.

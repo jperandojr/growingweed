@@ -8,6 +8,7 @@ import {
 } from "@/lib/admin-posts";
 import { isPublishedNow } from "@/data/blog";
 import { submitToIndexNow } from "@/lib/indexnow";
+import { revalidatePostPages } from "@/lib/revalidate-posts";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -28,6 +29,7 @@ export async function PUT(req: NextRequest, { params }: Params) {
   const error = validatePost(body);
   if (error) return NextResponse.json({ error }, { status: 400 });
   await savePost({ ...body, slug }, { isNew: false });
+  revalidatePostPages(slug);
   // Only ping for edits that are live now — see the note in the POST route.
   if (isPublishedNow(body)) await submitToIndexNow([`/${slug}`]);
   return NextResponse.json({ ok: true, slug });
@@ -39,6 +41,7 @@ export async function DELETE(_req: NextRequest, { params }: Params) {
   if (!(await deletePost(slug))) {
     return NextResponse.json({ error: "Not found (built-in posts are read-only)" }, { status: 404 });
   }
+  revalidatePostPages(slug);
   // Prompt a recrawl of the now-gone URL so it drops out of search faster,
   // but only if it was actually live (no point recrawling a page that was
   // never reachable).
