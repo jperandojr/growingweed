@@ -1,6 +1,6 @@
 // Shared sitemap configuration. Set SITE_URL in your environment (or edit the
 // fallback) before going live so all sitemap URLs use the production domain.
-export const SITE_URL = process.env.SITE_URL ?? "https://www.growingweed.com";
+export const SITE_URL = process.env.SITE_URL ?? "https://growingweed.com";
 
 /** Max strain URLs per sitemap file (spec limit is 50,000; we stay well under). */
 export const STRAINS_PER_SITEMAP = 20000;
