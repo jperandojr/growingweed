@@ -72,8 +72,9 @@ function writeBatches(batches: Batch[]) {
 }
 
 /** Spreads `count` items across a cadence of `cadenceCount` per `cadencePer`,
- *  starting at `startDate`, in order. E.g. 3/week from 2026-08-01 gives dates
- *  roughly 2.3 days apart: Aug 1, 3, 5, 8, 10, 13, ... */
+ *  starting at `startDate`, in order. Uses floor (not round) so a same-day
+ *  cadence like 3/day lands exactly 3 on day 0, 3 on day 1, etc. — round
+ *  would shortchange day 0 (e.g. only 2) to keep later days on schedule. */
 export function computeScheduleDates(
   startDate: string,
   cadenceCount: number,
@@ -86,7 +87,7 @@ export function computeScheduleDates(
   const dates: string[] = [];
   for (let i = 0; i < count; i++) {
     const d = new Date(start);
-    d.setUTCDate(d.getUTCDate() + Math.round(i * intervalDays));
+    d.setUTCDate(d.getUTCDate() + Math.floor(i * intervalDays));
     dates.push(d.toISOString().slice(0, 10));
   }
   return dates;
