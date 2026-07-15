@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#4e8039"/>
+  <g transform="translate(32,40)" fill="#ffffff">
+    <!-- one leaflet, tip pointing up from the shared base at the origin -->
+    <path id="blade" d="M0,0 C-3.6,-3 -6.4,-7.2 -6,-13 C-5.6,-19.5 -2.6,-26.5 0,-32 C2.6,-26.5 5.6,-19.5 6,-13 C6.4,-7.2 3.6,-3 0,0 Z"/>
+    <use href="#blade" transform="rotate(-72) scale(0.62)"/>
+    <use href="#blade" transform="rotate(-40) scale(0.86)"/>
+    <use href="#blade" transform="rotate(-14) scale(0.98)"/>
+    <use href="#blade" transform="rotate(14) scale(0.98)"/>
+    <use href="#blade" transform="rotate(40) scale(0.86)"/>
+    <use href="#blade" transform="rotate(72) scale(0.62)"/>
+  </g>
+</svg>
