@@ -49,7 +49,28 @@ Format rules (strict — the site's renderer depends on this exact structure):
   each followed by a single 40-60 word answer paragraph.
 - Close with a "## The Bottom Line" section: one short paragraph recapping the key point, ending
   with a paragraph containing 2-3 internal links to related pages using markdown link syntax.
-- Separate every block (paragraph, heading, bullet list, key takeaways) with a single blank line.
+- A blank line separates one block from the next, where a "block" is a whole paragraph, a whole
+  heading, or a whole bullet list (all of its items together). Never put a blank line between the
+  "Key Takeaways" line and its first bullet, and never put a blank line between two bullets in the
+  same list — those stay on consecutive lines with a single newline, no blank line, or the list
+  breaks apart into disconnected single-item lists on the live page. For example, exactly this
+  spacing (one \\n between list lines, two \\n between blocks):
+
+  Cannabis contains several major cannabinoids worth knowing.
+
+  Key Takeaways
+  - THC is the primary psychoactive cannabinoid.
+  - CBD does not cause intoxication on its own.
+  - Ratios between cannabinoids shape how a strain feels.
+
+  ## Common Cannabinoids
+
+  Most strains contain a mix of the following compounds.
+  - THC: the main driver of the "high" associated with cannabis.
+  - CBD: widely used for its non-intoxicating effects.
+
+  Notice the bullets under "Key Takeaways" and under "Common Cannabinoids" each sit on their own
+  line directly below the line before them, with no blank line until the whole list is finished.
 - Every factual claim, statistic, date or named source must be either general knowledge or cited
   inline as a markdown link to a real, well-known authoritative source (e.g. a government health
   agency, a peer-reviewed journal, a major news outlet). Never invent a study, statistic, or URL.
