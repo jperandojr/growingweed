@@ -149,7 +149,7 @@ export const seedBanks: SeedBank[] = [
     id: "blimburn-seeds",
     slug: "blimburn-seeds",
     name: "Blimburn Seeds",
-    rating: 4.7,
+    rating: 4.9,
     reviewCount: 4218,
     strainCount: 900,
     freeSeeds: true,
