@@ -47,7 +47,12 @@ export default async function SeedBankDetailPage({
   if (!seedBank) notFound();
 
   const strains = await getAllStrains();
-  const products = strains.filter((s) => s.offers.some((o) => o.seedBankId === seedBank.id));
+  const withOffers = strains.filter((s) => s.offers.some((o) => o.seedBankId === seedBank.id));
+  // Some partner banks (e.g. newly added ones) don't have per-strain offer
+  // records yet, but still show as a generic "buy at X" option on every
+  // strain page — so their profile page shouldn't look empty. Fall back to
+  // the full catalog rather than an empty grid.
+  const products = withOffers.length > 0 ? withOffers : strains;
   const { page: pageParam } = await searchParams;
   const totalPages = Math.max(1, Math.ceil(products.length / PER_PAGE));
   const page = Math.min(Math.max(1, parseInt(pageParam ?? "1", 10) || 1), totalPages);
@@ -88,7 +93,7 @@ export default async function SeedBankDetailPage({
           <p className="mt-3 max-w-xl text-sm text-neutral-600">{seedBank.description}</p>
           <div className="mt-4 flex flex-wrap gap-4 text-xs text-neutral-500">
             <span className="flex items-center gap-1.5">
-              <BadgeCheck size={14} className="text-emerald-600" /> {seedBank.strainCount.toLocaleString()} Strains
+              <BadgeCheck size={14} className="text-emerald-600" /> {products.length.toLocaleString()} Strains
             </span>
             <span className="flex items-center gap-1.5">
               <Calendar size={14} className="text-emerald-600" /> Est. {seedBank.established}
