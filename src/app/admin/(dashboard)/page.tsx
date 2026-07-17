@@ -2,14 +2,12 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { Plus, ExternalLink, Pencil, Trash2, LogOut, CalendarClock } from "lucide-react";
+import { Plus, ExternalLink, Pencil, Trash2 } from "lucide-react";
 import { BlogPost } from "@/lib/types";
 
 type PlanItem = { id: string; title: string; chapter: string; status: string };
 
 export default function AdminDashboard() {
-  const router = useRouter();
   const [editable, setEditable] = useState<BlogPost[] | null>(null);
   const [builtIn, setBuiltIn] = useState<BlogPost[]>([]);
   const [plan, setPlan] = useState<PlanItem[]>([]);
@@ -35,12 +33,6 @@ export default function AdminDashboard() {
     load();
   };
 
-  const logout = async () => {
-    await fetch("/api/admin/login", { method: "DELETE" });
-    router.push("/admin/login");
-    router.refresh();
-  };
-
   const planned = plan.filter((p) => p.status === "planned");
 
   return (
@@ -53,26 +45,12 @@ export default function AdminDashboard() {
             {planned.length > 0 && ` · ${planned.length} planned`}
           </p>
         </div>
-        <div className="flex items-center gap-4">
-          <button
-            onClick={logout}
-            className="flex items-center gap-1.5 text-sm text-neutral-400 hover:text-neutral-900"
-          >
-            <LogOut size={14} /> Logout
-          </button>
-          <Link
-            href="/admin/plan"
-            className="flex items-center gap-1.5 rounded-lg border border-neutral-200 px-4 py-2.5 text-sm font-semibold text-neutral-700 transition hover:border-emerald-300 hover:text-emerald-700"
-          >
-            <CalendarClock size={15} /> Content Plan
-          </Link>
-          <Link
-            href="/admin/new"
-            className="flex items-center gap-1.5 rounded-lg bg-neutral-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
-          >
-            <Plus size={15} /> New Post
-          </Link>
-        </div>
+        <Link
+          href="/admin/new"
+          className="flex items-center gap-1.5 rounded-lg bg-neutral-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
+        >
+          <Plus size={15} /> New Post
+        </Link>
       </div>
 
       <div className="mt-6 overflow-hidden rounded-xl border border-neutral-200">

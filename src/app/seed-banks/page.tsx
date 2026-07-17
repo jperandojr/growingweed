@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { seedBanks } from "@/data/seedbanks";
+import { getSeedBanks } from "@/data/seedbanks";
 import { SeedBankCard } from "@/components/SeedBankCard";
 import { JsonLd } from "@/components/JsonLd";
 import { itemListSchema } from "@/lib/schema";
@@ -9,7 +9,11 @@ export const metadata = {
   description: "Compare the world's top cannabis seed banks by rating, catalog size, and shipping.",
 };
 
-export default function SeedBanksPage() {
+// Re-checked periodically so admin edits show up without a redeploy.
+export const revalidate = 1800;
+
+export default async function SeedBanksPage() {
+  const seedBanks = await getSeedBanks();
   return (
     <div className="mx-auto max-w-7xl px-6 py-10">
       <JsonLd

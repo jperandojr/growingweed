@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { strains } from "@/data/strains";
+import { getAllStrains } from "@/data/strains";
 import { filterStrains } from "@/lib/strain-utils";
 import { ProductCard } from "@/components/ProductCard";
 import { FilterSidebar, SearchSortBar } from "@/components/strains/ShopControls";
@@ -26,6 +26,9 @@ export async function generateMetadata({
 
 const PER_PAGE = 48;
 
+// Re-checked periodically so admin strain edits show up without a redeploy.
+export const revalidate = 1800;
+
 type SP = Record<string, string | string[] | undefined>;
 
 function str(v: string | string[] | undefined) {
@@ -42,6 +45,7 @@ export default async function StrainsPage({
   searchParams: Promise<SP>;
 }) {
   const sp = await searchParams;
+  const strains = await getAllStrains();
 
   const filtered = filterStrains(strains, {
     q: str(sp.q),

@@ -1,9 +1,12 @@
 import Link from "next/link";
-import { seedBanks } from "@/data/seedbanks";
-import { strains } from "@/data/strains";
+import { getSeedBanks } from "@/data/seedbanks";
+import { getAllStrains } from "@/data/strains";
 import { getAllPosts } from "@/data/blog";
 
 export const metadata = { title: "Sitemap | GrowingWeed" };
+
+// Re-checked periodically so admin edits show up without a redeploy.
+export const revalidate = 1800;
 
 const mainPages = [
   { label: "Home", href: "/" },
@@ -19,6 +22,8 @@ const mainPages = [
 
 export default async function SitemapPage() {
   const blogPosts = await getAllPosts();
+  const seedBanks = await getSeedBanks();
+  const strains = await getAllStrains();
   return (
     <div className="mx-auto max-w-5xl px-6 py-10">
       <h1 className="mb-6 text-2xl font-bold text-neutral-900">Sitemap</h1>

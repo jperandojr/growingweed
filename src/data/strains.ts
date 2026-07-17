@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { Strain } from "@/lib/types";
 import { generatedStrains } from "./strains-generated";
+import { getStrainOverrides } from "@/lib/strain-overrides";
 
 // Any image dropped into /public/strains named {slug}.jpg|png|webp is
 // automatically attached to its strain — no data edits needed. Additional
@@ -640,6 +641,23 @@ export const strains: Strain[] = [...curatedStrains, ...generatedStrains].map((s
 
 const bySlug = new Map(strains.map((s) => [s.slug, s]));
 
-export function getStrainBySlug(slug: string) {
+/** Base-catalog lookup, with no admin overrides applied. Only for internal,
+ *  module-level indexing (see strain-overview.ts) — page-level code should
+ *  use the override-aware getStrainBySlug()/getAllStrains() below instead. */
+export function getBaseStrainBySlug(slug: string) {
   return bySlug.get(slug);
+}
+
+/** Override-aware: reflects any edit saved through the admin dashboard. */
+export async function getStrainBySlug(slug: string): Promise<Strain | undefined> {
+  const overrides = await getStrainOverrides();
+  return overrides[slug] ?? bySlug.get(slug);
+}
+
+/** Override-aware full catalog — same order as `strains`, with any admin-
+ *  edited strains swapped in wholesale. */
+export async function getAllStrains(): Promise<Strain[]> {
+  const overrides = await getStrainOverrides();
+  if (Object.keys(overrides).length === 0) return strains;
+  return strains.map((s) => overrides[s.slug] ?? s);
 }

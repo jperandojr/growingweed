@@ -6,12 +6,10 @@ import { getStrainBySlug } from "@/data/strains";
 // Capped to keep responses small.
 const MAX_SLUGS = 50;
 
-export function GET(req: NextRequest) {
+export async function GET(req: NextRequest) {
   const raw = req.nextUrl.searchParams.get("slugs") ?? "";
   const slugs = raw.split(",").filter(Boolean).slice(0, MAX_SLUGS);
-  const found = slugs.flatMap((slug) => {
-    const s = getStrainBySlug(slug);
-    return s ? [s] : [];
-  });
+  const results = await Promise.all(slugs.map(getStrainBySlug));
+  const found = results.filter((s): s is NonNullable<typeof s> => !!s);
   return Response.json(found);
 }

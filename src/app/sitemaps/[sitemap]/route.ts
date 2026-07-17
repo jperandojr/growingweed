@@ -1,6 +1,6 @@
 import { NextRequest } from "next/server";
 import { strains } from "@/data/strains";
-import { seedBanks } from "@/data/seedbanks";
+import { getSeedBanks } from "@/data/seedbanks";
 import { getAllPosts } from "@/data/blog";
 import {
   SITE_URL,
@@ -38,6 +38,7 @@ export async function GET(
   }
 
   if (sitemap === "seed-banks.xml") {
+    const seedBanks = await getSeedBanks();
     const urls: SitemapUrl[] = seedBanks.map((sb) => ({
       loc: `${SITE_URL}/seed-banks/${sb.slug}`,
       lastmod: today,

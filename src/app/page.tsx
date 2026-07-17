@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { getAllPosts } from "@/data/blog";
-import { seedBanks } from "@/data/seedbanks";
+import { getSeedBanks } from "@/data/seedbanks";
 import { getStrainBySlug } from "@/data/strains";
 import { strainTypes } from "@/lib/strain-utils";
 import { PostCover } from "@/components/PostCover";
@@ -69,9 +69,9 @@ function SectionHeader({
 export default async function Home() {
   const blogPosts = await getAllPosts();
   const [featuredPost, ...restPosts] = blogPosts;
-  const picks = editorsPicks
-    .map(getStrainBySlug)
-    .filter((s): s is NonNullable<typeof s> => !!s);
+  const seedBanks = await getSeedBanks();
+  const pickResults = await Promise.all(editorsPicks.map(getStrainBySlug));
+  const picks = pickResults.filter((s): s is NonNullable<typeof s> => !!s);
   const [featuredStrain, ...listStrains] = picks;
 
   return (

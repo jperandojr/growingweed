@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { strains, getStrainBySlug } from "@/data/strains";
+import { strains, getAllStrains, getStrainBySlug } from "@/data/strains";
+import { getSeedBanks } from "@/data/seedbanks";
 import { strainTypes } from "@/lib/strain-utils";
 import { buildOverview } from "@/lib/strain-overview";
 import { StrainGallery } from "@/components/strains/StrainGallery";
@@ -17,13 +18,17 @@ export function generateStaticParams() {
   return strains.slice(0, 200).map((s) => ({ slug: s.slug }));
 }
 
+// Re-checked periodically so admin edits (strain overrides, seed bank data)
+// show up without a redeploy.
+export const revalidate = 1800;
+
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const strain = getStrainBySlug(slug);
+  const strain = await getStrainBySlug(slug);
   if (!strain) return {};
   return {
     title: `${strain.name} | Buy Cannabis Seeds | GrowingWeed`,
@@ -38,10 +43,14 @@ export default async function StrainDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const strain = getStrainBySlug(slug);
+  const [strain, allStrains, seedBanks] = await Promise.all([
+    getStrainBySlug(slug),
+    getAllStrains(),
+    getSeedBanks(),
+  ]);
   if (!strain) notFound();
 
-  const related = strains
+  const related = allStrains
     .filter((s) => s.id !== strain.id && s.category.some((c) => strain.category.includes(c)))
     .slice(0, 5);
 
@@ -82,7 +91,7 @@ export default async function StrainDetailPage({
           <p className="mt-4 text-sm leading-relaxed text-neutral-600">{strain.description}</p>
 
           <div className="mt-6 border-t border-neutral-100 pt-6">
-            <StrainBuyBox strain={strain} />
+            <StrainBuyBox strain={strain} seedBanks={seedBanks} />
           </div>
         </div>
       </div>

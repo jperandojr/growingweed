@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { X, BadgeCheck } from "lucide-react";
 import { proofStrains, proofLocations } from "@/data/purchase-pool";
-import { seedBanks } from "@/data/seedbanks";
+import { SeedBank } from "@/lib/types";
 import { PlantArt } from "./PlantArt";
 
 type ProofEvent = {
@@ -28,7 +28,7 @@ function mulberry32(seed: number) {
   };
 }
 
-function dailyEvents(count: number): ProofEvent[] {
+function dailyEvents(count: number, seedBanks: SeedBank[]): ProofEvent[] {
   const today = new Date();
   const dayKey =
     today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
@@ -62,13 +62,18 @@ export function PurchaseProof() {
 
   // Generate on the client only (uses today's date + sessionStorage) to avoid
   // a hydration mismatch — one intentional post-mount sync from external state.
+  // Seed banks come from a cached API route rather than a server prop, so
+  // this stays out of the root layout's render path entirely.
   useEffect(() => {
     if (window.sessionStorage.getItem("growingweed-proof-dismissed")) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setDismissed(true);
       return;
     }
-    setEvents(dailyEvents(24));
+    fetch("/api/seedbanks")
+      .then((r) => r.json())
+      .then((seedBanks: SeedBank[]) => setEvents(dailyEvents(24, seedBanks)))
+      .catch(() => setEvents(dailyEvents(24, [])));
   }, []);
 
   useEffect(() => {

@@ -1,6 +1,11 @@
 import { SeedBank } from "@/lib/types";
+import { readJson, writeJson } from "@/lib/json-store";
 
-export const seedBanks: SeedBank[] = [
+// Admin-editable via /admin/seedbanks. Stored as one JSON file in Supabase
+// Storage (small list, no need for the per-record split strains.ts uses);
+// this array is the fallback used until that file exists, so the site
+// behaves identically before and after the first admin edit.
+const DEFAULT_SEED_BANKS: SeedBank[] = [
   {
     id: "seedsman",
     slug: "seedsman",
@@ -179,6 +184,20 @@ export const seedBanks: SeedBank[] = [
   },
 ];
 
-export function getSeedBankBySlug(slug: string) {
-  return seedBanks.find((s) => s.slug === slug);
+const SEEDBANKS_PATH = "content/seedbanks.json";
+
+export async function getSeedBanks(): Promise<SeedBank[]> {
+  return readJson<SeedBank[]>(SEEDBANKS_PATH, DEFAULT_SEED_BANKS);
+}
+
+export async function getSeedBankById(id: string): Promise<SeedBank | undefined> {
+  return (await getSeedBanks()).find((s) => s.id === id);
+}
+
+export async function getSeedBankBySlug(slug: string): Promise<SeedBank | undefined> {
+  return (await getSeedBanks()).find((s) => s.slug === slug);
+}
+
+export async function saveSeedBanks(list: SeedBank[]): Promise<void> {
+  await writeJson(SEEDBANKS_PATH, list);
 }

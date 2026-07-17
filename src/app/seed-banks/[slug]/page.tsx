@@ -3,13 +3,16 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Gift, Globe2, Calendar, BadgeCheck } from "lucide-react";
 import { getSeedBankBySlug } from "@/data/seedbanks";
-import { strains } from "@/data/strains";
+import { getAllStrains } from "@/data/strains";
 import { StarRating } from "@/components/StarRating";
 import { ProductCard } from "@/components/ProductCard";
 import { JsonLd } from "@/components/JsonLd";
 import { seedBankSchema, breadcrumbSchema } from "@/lib/schema";
 
 const PER_PAGE = 48;
+
+// Re-checked periodically so admin edits show up without a redeploy.
+export const revalidate = 1800;
 
 export async function generateMetadata({
   params,
@@ -19,7 +22,7 @@ export async function generateMetadata({
   searchParams: Promise<{ page?: string }>;
 }) {
   const { slug } = await params;
-  const seedBank = getSeedBankBySlug(slug);
+  const seedBank = await getSeedBankBySlug(slug);
   if (!seedBank) return {};
   const { page } = await searchParams;
   const paginated = !!page && page !== "1";
@@ -40,9 +43,10 @@ export default async function SeedBankDetailPage({
   searchParams: Promise<{ page?: string }>;
 }) {
   const { slug } = await params;
-  const seedBank = getSeedBankBySlug(slug);
+  const seedBank = await getSeedBankBySlug(slug);
   if (!seedBank) notFound();
 
+  const strains = await getAllStrains();
   const products = strains.filter((s) => s.offers.some((o) => o.seedBankId === seedBank.id));
   const { page: pageParam } = await searchParams;
   const totalPages = Math.max(1, Math.ceil(products.length / PER_PAGE));

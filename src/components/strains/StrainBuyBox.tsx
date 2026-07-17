@@ -4,8 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Scale, ExternalLink, CheckCircle2, Circle, Gift, Globe2 } from "lucide-react";
-import { Strain } from "@/lib/types";
-import { seedBanks } from "@/data/seedbanks";
+import { Strain, SeedBank } from "@/lib/types";
 import { useStore } from "@/context/StoreContext";
 import { StarRating } from "@/components/StarRating";
 
@@ -13,7 +12,7 @@ import { StarRating } from "@/components/StarRating";
 // regardless of whether we have specific offer data for them.
 const PINNED_BANKS = ["blimburn-seeds", "ilgm", "seedsman"];
 
-export function StrainBuyBox({ strain }: { strain: Strain }) {
+export function StrainBuyBox({ strain, seedBanks }: { strain: Strain; seedBanks: SeedBank[] }) {
   const { toggleCompare, isInCompare } = useStore();
   const [selectedIndex, setSelectedIndex] = useState(0);
 

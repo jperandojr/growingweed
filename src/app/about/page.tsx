@@ -1,4 +1,4 @@
-import { seedBanks } from "@/data/seedbanks";
+import { getSeedBanks } from "@/data/seedbanks";
 import { strains } from "@/data/strains";
 
 export const metadata = {
@@ -6,7 +6,11 @@ export const metadata = {
   description: "GrowingWeed aggregates the world's best cannabis seed banks in one marketplace.",
 };
 
-export default function AboutPage() {
+// Re-checked periodically so admin edits show up without a redeploy.
+export const revalidate = 1800;
+
+export default async function AboutPage() {
+  const seedBanks = await getSeedBanks();
   return (
     <div className="mx-auto max-w-3xl px-6 py-10">
       <h1 className="mb-4 text-2xl font-bold text-neutral-900 sm:text-3xl">About GrowingWeed</h1>

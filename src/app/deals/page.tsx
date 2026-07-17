@@ -1,4 +1,4 @@
-import { strains } from "@/data/strains";
+import { getAllStrains } from "@/data/strains";
 import { lowestOffer } from "@/lib/strain-utils";
 import { ProductCard } from "@/components/ProductCard";
 
@@ -7,7 +7,11 @@ export const metadata = {
   description: "The best current deals and discounts on cannabis seeds from top seed banks.",
 };
 
-export default function DealsPage() {
+// Re-checked periodically so admin strain edits show up without a redeploy.
+export const revalidate = 1800;
+
+export default async function DealsPage() {
+  const strains = await getAllStrains();
   const deals = [...strains]
     .sort((a, b) => lowestOffer(a).price - lowestOffer(b).price)
     .slice(0, 60);
