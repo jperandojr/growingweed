@@ -10,7 +10,7 @@ import { StarRating } from "@/components/StarRating";
 
 // These partner banks always show, in this order, on every strain page —
 // regardless of whether we have specific offer data for them.
-const PINNED_BANKS = ["blimburn-seeds", "ilgm", "seedsman"];
+const PINNED_BANKS = ["herbies", "blimburn-seeds", "ilgm"];
 
 export function StrainBuyBox({ strain, seedBanks }: { strain: Strain; seedBanks: SeedBank[] }) {
   const { toggleCompare, isInCompare } = useStore();
