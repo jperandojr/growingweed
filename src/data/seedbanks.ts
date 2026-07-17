@@ -145,6 +145,38 @@ export const seedBanks: SeedBank[] = [
     url: "https://herbiesheadshop.com/?utm_source=growing-weed&utm_medium=people&utm_campaign=growing-weed_partner&a_aid=growing-weed",
     accent: "text-emerald-600",
   },
+  {
+    id: "blimburn-seeds",
+    slug: "blimburn-seeds",
+    name: "Blimburn Seeds",
+    rating: 4.7,
+    reviewCount: 4218,
+    strainCount: 900,
+    freeSeeds: true,
+    worldwideShipping: true,
+    established: 2018,
+    description:
+      "Fast-growing international seed bank with a large feminized and autoflower catalog, frequent bulk deals, and stealthy worldwide shipping.",
+    logo: "/logos/blimburn-seeds.webp",
+    url: "https://blimburnseeds.com/?blb=mx7oc8k",
+    accent: "text-orange-600",
+  },
+  {
+    id: "ilgm",
+    slug: "ilgm",
+    name: "ILGM",
+    rating: 4.8,
+    reviewCount: 15200,
+    strainCount: 100,
+    freeSeeds: false,
+    worldwideShipping: true,
+    established: 2012,
+    description:
+      "I Love Growing Marijuana pairs a curated seed catalog with an enormous free grow-guide library and a germination guarantee, built for beginners.",
+    logo: "/logos/ilgm.webp",
+    url: "https://ilgm.com?aff=5613",
+    accent: "text-teal-600",
+  },
 ];
 
 export function getSeedBankBySlug(slug: string) {
