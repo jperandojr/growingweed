@@ -9,9 +9,9 @@ import { seedBanks } from "@/data/seedbanks";
 import { useStore } from "@/context/StoreContext";
 import { StarRating } from "@/components/StarRating";
 
-// Herbies and Crop King Seeds are temporarily hidden; Seedsman is the sole
-// partner shown, regardless of whether we have specific offer data for it.
-const PINNED_BANKS = ["seedsman"];
+// These partner banks always show, in this order, on every strain page —
+// regardless of whether we have specific offer data for them.
+const PINNED_BANKS = ["blimburn-seeds", "ilgm", "seedsman"];
 
 export function StrainBuyBox({ strain }: { strain: Strain }) {
   const { toggleCompare, isInCompare } = useStore();
