@@ -213,11 +213,27 @@ export async function deletePlanEntry(id: string): Promise<boolean> {
 
 /** Called when a post is created from a plan entry. */
 export async function markPlanPublished(id: string, slug: string): Promise<void> {
+  return markPlanPublishedBatch([{ id, slug }]);
+}
+
+/** Same as markPlanPublished, but applies every update in a single
+ *  read-modify-write instead of one per entry. The publish-plan cron writes
+ *  several entries per run in a tight sequential loop; doing a separate
+ *  read-modify-write per entry left a window where a read could observe a
+ *  not-yet-visible prior write and silently revert it when saved back —
+ *  observed in production as a plan entry stuck on "planned" despite its
+ *  post already being live. One write per run removes that window. */
+export async function markPlanPublishedBatch(updates: { id: string; slug: string }[]): Promise<void> {
+  if (updates.length === 0) return;
   const entries = await listPlan();
-  const entry = entries.find((e) => e.id === id);
-  if (!entry) return;
-  entry.status = "published";
-  entry.slug = slug;
+  const bySlug = new Map(updates.map((u) => [u.id, u.slug]));
+  for (const entry of entries) {
+    const slug = bySlug.get(entry.id);
+    if (slug) {
+      entry.status = "published";
+      entry.slug = slug;
+    }
+  }
   await writePlan(entries);
 }
 

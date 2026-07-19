@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { listPlan, markPlanPublished, PlanEntry } from "@/lib/article-plan";
+import { listPlan, markPlanPublishedBatch, PlanEntry } from "@/lib/article-plan";
 import { savePost, validatePost, PostInput } from "@/lib/admin-posts";
 import { getAllPosts } from "@/data/blog";
 import { generateArticle, hueFor } from "@/lib/generate-article";
@@ -47,6 +47,9 @@ export async function GET(req: NextRequest) {
 
   const publishedPosts = await getAllPosts();
   const results: { title: string; ok: boolean; slug?: string; error?: string }[] = [];
+  // Collected and applied to the plan store in one write at the end — see
+  // markPlanPublishedBatch for why a per-entry write is unsafe here.
+  const planUpdates: { id: string; slug: string }[] = [];
 
   for (const entry of due) {
     if (Date.now() - start > TIME_BUDGET_MS) {
@@ -77,7 +80,7 @@ export async function GET(req: NextRequest) {
       if (error) throw new Error(error);
 
       const { slug } = await savePost(input, { isNew: true });
-      await markPlanPublished(entry.id, slug);
+      planUpdates.push({ id: entry.id, slug });
       revalidatePostPages(slug);
       await submitToIndexNow([`/${slug}`]);
 
@@ -86,6 +89,8 @@ export async function GET(req: NextRequest) {
       results.push({ title: entry.title, ok: false, error: String((e as Error).message) });
     }
   }
+
+  await markPlanPublishedBatch(planUpdates);
 
   return NextResponse.json({
     checked: plan.filter((e) => e.status === "planned" && e.scheduledDate).length,
