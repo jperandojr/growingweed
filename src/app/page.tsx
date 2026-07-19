@@ -69,6 +69,10 @@ function SectionHeader({
 export default async function Home() {
   const blogPosts = await getAllPosts();
   const [featuredPost, ...restPosts] = blogPosts;
+  // 6 latest after the featured post go in the grid; the next few (a
+  // disjoint slice, so nothing repeats) fill the Trending Posts sidebar.
+  const gridPosts = restPosts.slice(0, 6);
+  const trendingPosts = restPosts.slice(6, 11);
   const seedBanks = await getSeedBanks();
   const pickResults = await Promise.all(editorsPicks.map(getStrainBySlug));
   const picks = pickResults.filter((s): s is NonNullable<typeof s> => !!s);
@@ -112,43 +116,70 @@ export default async function Home() {
       {featuredPost && (
       <section className="pb-20">
         <SectionHeader kicker="The Guides" linkLabel="All guides" linkHref="/grow-guides" />
-        <div className="grid gap-12 lg:grid-cols-3">
-          <Link href={`/${featuredPost.slug}`} className="group lg:col-span-2">
-            <PostCover
-              image={featuredPost.image}
-              hue={featuredPost.hue}
-              className="aspect-[16/9] w-full rounded-xl"
-              iconClassName="w-12 h-12"
-            />
-            <p className="mt-5 text-[11px] font-semibold uppercase tracking-[0.2em] text-neutral-400">
-              {featuredPost.category}
-            </p>
-            <h2 className="mt-2 max-w-xl text-2xl font-bold leading-snug text-neutral-900 group-hover:text-emerald-700 sm:text-3xl">
-              {featuredPost.title}
-            </h2>
-            <p className="mt-3 max-w-xl text-sm leading-relaxed text-neutral-500">
-              {featuredPost.excerpt}
-            </p>
-          </Link>
 
-          <div className="flex flex-col">
-            {restPosts.map((post) => (
-              <Link
-                key={post.id}
-                href={`/${post.slug}`}
-                className="group border-b border-neutral-200 py-5 first:pt-0 last:border-b-0"
-              >
+        <Link href={`/${featuredPost.slug}`} className="group block">
+          <PostCover
+            image={featuredPost.image}
+            hue={featuredPost.hue}
+            className="aspect-[21/9] w-full rounded-xl"
+            iconClassName="w-14 h-14"
+          />
+          <p className="mt-5 text-[11px] font-semibold uppercase tracking-[0.2em] text-neutral-400">
+            {featuredPost.category}
+          </p>
+          <h2 className="mt-2 max-w-2xl text-2xl font-bold leading-snug text-neutral-900 group-hover:text-emerald-700 sm:text-3xl">
+            {featuredPost.title}
+          </h2>
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-neutral-500">
+            {featuredPost.excerpt}
+          </p>
+        </Link>
+
+        {(gridPosts.length > 0 || trendingPosts.length > 0) && (
+          <div className="mt-14 grid gap-12 lg:grid-cols-[1fr_300px]">
+            <div className="grid gap-x-8 gap-y-10 sm:grid-cols-2">
+              {gridPosts.map((post) => (
+                <Link key={post.id} href={`/${post.slug}`} className="group">
+                  <PostCover
+                    image={post.image}
+                    hue={post.hue}
+                    className="aspect-[16/9] w-full rounded-lg"
+                    iconClassName="w-9 h-9"
+                  />
+                  <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-neutral-400">
+                    {post.category}
+                  </p>
+                  <h3 className="mt-1.5 text-base font-semibold leading-snug text-neutral-900 group-hover:text-emerald-700">
+                    {post.title}
+                  </h3>
+                  <p className="mt-1.5 text-xs text-neutral-400">{post.readTime}</p>
+                </Link>
+              ))}
+            </div>
+
+            {trendingPosts.length > 0 && (
+              <div>
                 <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-neutral-400">
-                  {post.category}
+                  Trending Posts
                 </p>
-                <h3 className="mt-1.5 text-base font-semibold leading-snug text-neutral-900 group-hover:text-emerald-700">
-                  {post.title}
-                </h3>
-                <p className="mt-1.5 text-xs text-neutral-400">{post.readTime}</p>
-              </Link>
-            ))}
+                <div className="mt-4 flex flex-col">
+                  {trendingPosts.map((post) => (
+                    <Link
+                      key={post.id}
+                      href={`/${post.slug}`}
+                      className="group border-b border-neutral-200 py-4 first:pt-0 last:border-b-0"
+                    >
+                      <h3 className="text-sm font-semibold leading-snug text-neutral-900 group-hover:text-emerald-700">
+                        {post.title}
+                      </h3>
+                      <p className="mt-1 text-xs text-neutral-400">{post.readTime}</p>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
-        </div>
+        )}
       </section>
       )}
 
