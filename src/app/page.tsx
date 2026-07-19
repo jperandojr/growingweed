@@ -68,10 +68,12 @@ function SectionHeader({
 
 export default async function Home() {
   const blogPosts = await getAllPosts();
-  // Trending Posts leads with the 5 latest posts; the grid picks up from
-  // there (a disjoint slice, so nothing repeats).
-  const trendingPosts = blogPosts.slice(0, 5);
-  const gridPosts = blogPosts.slice(5, 11);
+  // Latest post leads as its own single-column block, the grid picks up
+  // the next 6, and Trending Posts gets the 5 after that — three disjoint
+  // slices, so nothing ever repeats between them.
+  const [latestPost, ...olderPosts] = blogPosts;
+  const gridPosts = olderPosts.slice(0, 6);
+  const trendingPosts = olderPosts.slice(6, 11);
   const seedBanks = await getSeedBanks();
   const pickResults = await Promise.all(editorsPicks.map(getStrainBySlug));
   const picks = pickResults.filter((s): s is NonNullable<typeof s> => !!s);
@@ -112,29 +114,53 @@ export default async function Home() {
       </section>
 
       {/* ---- The Guides ---- */}
-      {(gridPosts.length > 0 || trendingPosts.length > 0) && (
+      {(latestPost || gridPosts.length > 0 || trendingPosts.length > 0) && (
       <section className="pb-20">
         <SectionHeader kicker="The Guides" linkLabel="All guides" linkHref="/grow-guides" />
 
         <div className="grid gap-12 lg:grid-cols-[1fr_300px]">
-          <div className="grid gap-x-8 gap-y-10 sm:grid-cols-2">
-            {gridPosts.map((post) => (
-              <Link key={post.id} href={`/${post.slug}`} className="group">
+          <div>
+            {latestPost && (
+              <Link href={`/${latestPost.slug}`} className="group block">
                 <PostCover
-                  image={post.image}
-                  hue={post.hue}
-                  className="aspect-[16/9] w-full rounded-lg"
-                  iconClassName="w-9 h-9"
+                  image={latestPost.image}
+                  hue={latestPost.hue}
+                  className="aspect-[16/9] w-full rounded-xl"
+                  iconClassName="w-11 h-11"
                 />
                 <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-neutral-400">
-                  {post.category}
+                  {latestPost.category}
                 </p>
-                <h3 className="mt-1.5 text-base font-semibold leading-snug text-neutral-900 group-hover:text-emerald-700">
-                  {post.title}
-                </h3>
-                <p className="mt-1.5 text-xs text-neutral-400">{post.readTime}</p>
+                <h2 className="mt-1.5 max-w-2xl text-xl font-bold leading-snug text-neutral-900 group-hover:text-emerald-700 sm:text-2xl">
+                  {latestPost.title}
+                </h2>
+                <p className="mt-2 max-w-2xl text-sm leading-relaxed text-neutral-500">
+                  {latestPost.excerpt}
+                </p>
               </Link>
-            ))}
+            )}
+
+            {gridPosts.length > 0 && (
+              <div className="mt-12 grid gap-x-8 gap-y-10 sm:grid-cols-2">
+                {gridPosts.map((post) => (
+                  <Link key={post.id} href={`/${post.slug}`} className="group">
+                    <PostCover
+                      image={post.image}
+                      hue={post.hue}
+                      className="aspect-[16/9] w-full rounded-lg"
+                      iconClassName="w-9 h-9"
+                    />
+                    <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-neutral-400">
+                      {post.category}
+                    </p>
+                    <h3 className="mt-1.5 text-base font-semibold leading-snug text-neutral-900 group-hover:text-emerald-700">
+                      {post.title}
+                    </h3>
+                    <p className="mt-1.5 text-xs text-neutral-400">{post.readTime}</p>
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
 
           {trendingPosts.length > 0 && (
