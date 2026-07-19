@@ -69,10 +69,10 @@ function SectionHeader({
 export default async function Home() {
   const blogPosts = await getAllPosts();
   const [featuredPost, ...restPosts] = blogPosts;
-  // 6 latest after the featured post go in the grid; the next few (a
-  // disjoint slice, so nothing repeats) fill the Trending Posts sidebar.
-  const gridPosts = restPosts.slice(0, 6);
-  const trendingPosts = restPosts.slice(6, 11);
+  // Trending Posts gets the 5 latest right after the featured post; the
+  // grid picks up from there (a disjoint slice, so nothing repeats).
+  const trendingPosts = restPosts.slice(0, 5);
+  const gridPosts = restPosts.slice(5, 11);
   const seedBanks = await getSeedBanks();
   const pickResults = await Promise.all(editorsPicks.map(getStrainBySlug));
   const picks = pickResults.filter((s): s is NonNullable<typeof s> => !!s);
